@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+    <!-- Librería jQuery requerida por los plugins de JavaScript
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+    <!--My personalizaded CSS-->
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+    <title>Library</title>
+</head>
+<body>
+    <!--Menu superior-->
+    <div class="jumbotron">
+        <div class="container text-center">
+             <h1>Digital Library</h1>
+             <p>A Visual Survey of Text Mining Visualization for Requirement Engineering</p>
+        </div>
+         <a href="{% url 'add_article' %}">
+         <span class="glyphicon">Adicionar Articulo</span>
+         </a>
+    </div>
+<!--Paper' s menu-->
+    <div class="container">
+        <div class="col-md-3">
+            <div class="row" align="left" position= 'fixed'>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Source</li>
+                         <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                             UML Diagram
+                         </label>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            User History
+                        </label>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            Document Repository
+                         </label>
+                    <li class="list-group-item">Representation</li>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                             UML Diagram
+                        </label>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            User History
+                            </label>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            Document Repository
+                        </label>
+                    <li class="list-group-item">Objetive</li>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                             UML Diagram
+                        </label>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            User History
+                            </label>
+                        <label>
+                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            Document Repository
+                        </label>
+                </ul>
+                </nav>
+           </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row" align="left">
+                {% block content%}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div><br>
+
+</body>
+
+    <footer class="container-fluid text-center">
+        <p align="center">Copyright</p>
+            <form class="form-inline align-center">Enter the text:
+                <input type="email" class="form-control" size="50" placeholder="Text" align="center">
+                <button type="button" class="btn btn-danger">Search</button>
+            </form>
+    </footer>
+</html>
