@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from appdigilib import views
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
+    path('', views.index_list, name='post_list'),
+    path('insert/', views.addArticle, name='add_article')
+
 ]
