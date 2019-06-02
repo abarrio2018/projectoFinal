@@ -1,14 +1,17 @@
 {% extends "list/index.html" %}
 
 {% block content%}
+    {% if contexto %}
+        {% for articulo in contexto %}
             <div class="col-md-4">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Scalable Visualisation of Sentiment and Stance</div>
-                    <div> {{titulo}}</div>
+                    <div class="panel-heading">{{ articulo.autor}}</div>
+                    <div> {{ articulo.title}}</div>
                     <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                    <div class="panel-footer">Year</div>
+                    <div class="panel-footer">{{ articulo.published_date}}</div>
                 </div>
             </div>
+        {% endfor %}
             <div class="col-md-4">
                  <div class="panel panel-primary">
                     <div class="panel-heading">MultiStream</div>
@@ -16,7 +19,6 @@
                     <div class="panel-footer">Year</div>
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">News Articles Role</div>
@@ -24,7 +26,7 @@
                     <div class="panel-footer">Year</div>
                 </div>
             </div>
-                <div class="col-md-4">
+            <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">News Articles Role2</div>
                     <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
@@ -38,4 +40,7 @@
                     <div class="panel-footer">Year</div>
                 </div>
             </div>
+    {% else %}
+		<h1>Nao tem artigos para mostrar</h1>
+    {% endif %}
 {% endblock %}

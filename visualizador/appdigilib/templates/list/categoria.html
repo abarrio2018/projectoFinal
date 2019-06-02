@@ -1,0 +1,11 @@
+{% extends "list/index.html" %}
+{% block content%}
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <form method="post" class="post-form">{%csrf_token %}
+                        {{ fcatg.as_p }}
+                        <button type="submit">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+{% endblock %}
