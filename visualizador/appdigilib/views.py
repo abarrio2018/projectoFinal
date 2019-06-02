@@ -27,3 +27,8 @@ class Article():
         else:
             form = ArticleForm
         return render(request, 'list/article.html', {'form': form})
+
+    def ArticleList(request):
+        articulo = Articulo.objects.all().order_by('id')
+        contexto = {'articulo': articulo}
+        return render(request, 'list/index_list.html', contexto)

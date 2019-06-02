@@ -21,6 +21,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', views.index_list, name='post_list'),
-    path('insert/', views.addArticle, name='add_article')
+    path('insert/article/', views.Article.AdicionarArticulo, name='add_article'),
+   # path('insert/catg/', views.Categoria.AdicionarCategoria, name='add_categoria')
 
 ]

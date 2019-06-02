@@ -18,6 +18,12 @@ class AnaliticTask(models.Model):
     def __str__(self):
         return self.task
 
+class Image(models.Model):
+    image = models.ImageField(upload_to='images/')
+
+    def __unicode__(self):
+        return str(self.image)
+
 class Articulo(models.Model):
     autor = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
@@ -26,7 +32,7 @@ class Articulo(models.Model):
     published_date = models.DateField()
     categoria = models.ManyToManyField(Categoria)
     task = models.ManyToManyField(AnaliticTask)
-    # autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
 #    categorias = (
 #   ('Select', 'select'), ('Correlation', 'correlations'), ('Ranking', 'ranking'), ('Part of whole', 'part_Whole'),
 #    ('Evolution', 'evolution'))
