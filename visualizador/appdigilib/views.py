@@ -5,6 +5,7 @@ import json as JSON
 from django.views.generic import ListView
 from django.http import JsonResponse
 from .forms import *
+from django.template import RequestContext
 from appdigilib.models import Articulo, Categoria, AnaliticTask, Image
 from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 
