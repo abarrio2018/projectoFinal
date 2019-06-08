@@ -1,12 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 import urllib3
-import PIL.Image
 import json as JSON
 from django.views.generic import ListView
 from django.http import JsonResponse
-
-
 from .forms import *
 from appdigilib.models import Articulo, Categoria, AnaliticTask, Image
 from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
@@ -18,12 +15,13 @@ def listado(request):
     categorias = Categoria.objects.all()
     tareas = AnaliticTask.objects.all()
     articulos = Articulo.objects.all().order_by('image__articulo__published_date')
+    imagenes= Image.objects.all().order_by('articulo')
     #file = request.FILES
-#    imag = PIL.Image.open('images/index.jpeg')
+    #imag = PIL.Image.open('images/index.jpeg')
 #    imag.load()
 #    imag.split()
 
-    return render(request, 'list/index_list.html', {'articulos': articulos, 'categorias': categorias, 'tareas': tareas})
+    return render(request, 'list/index_list.html', {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes':imagenes})
 
 
 #Insertar con formulario
