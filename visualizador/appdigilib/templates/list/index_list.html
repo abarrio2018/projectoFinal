@@ -3,7 +3,7 @@
 {% block content%}
     {% for imagen in imagenes %}
         {% load static %}
-        <div class="panel-body"><img class="img-responsive" style="width:100%" src="{% static imagen %}"></div>
+        <div class="panel-body"><img class="img-responsive" style="width:100%" src="{% static imagen.image.url %}"></div>
     {% endfor %}
     {% if articulos %}
         {% for articulo in articulos %}
