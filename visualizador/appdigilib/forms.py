@@ -28,7 +28,7 @@ class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
         fields = ('categoria',)
-        widgets = {'categoria': forms.TextInput,}
+        widgets = {'categoria': forms.Select,}
 
 class AnaliticTaskForm(forms.ModelForm):
     class Meta:

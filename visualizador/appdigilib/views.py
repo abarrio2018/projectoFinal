@@ -1,18 +1,30 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 import urllib3
+import PIL.Image
 import json as JSON
+from django.views.generic import ListView
 from django.http import JsonResponse
-from appdigilib.models import Articulo, Categoria
+
+
+from .forms import *
+from appdigilib.models import Articulo, Categoria, AnaliticTask, Image
 from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 
 # Create your views here.
-def index_list(request):
-    http = urllib3.PoolManager()
 
-    #json = JSON.loads(response)
-    json = request.data
-    return render(request, 'list/index_list.html', {'titulo': json})
+
+def listado(request):
+    categorias = Categoria.objects.all()
+    tareas = AnaliticTask.objects.all()
+    articulos = Articulo.objects.all().order_by('image__articulo__published_date')
+    #file = request.FILES
+#    imag = PIL.Image.open('images/index.jpeg')
+#    imag.load()
+#    imag.split()
+
+    return render(request, 'list/index_list.html', {'articulos': articulos, 'categorias': categorias, 'tareas': tareas})
+
 
 #Insertar con formulario
 class Article():
@@ -28,7 +40,3 @@ class Article():
             form = ArticleForm
         return render(request, 'list/article.html', {'form': form})
 
-    def ArticleList(request):
-        articulo = Articulo.objects.all().order_by('id')
-        contexto = {'articulo': articulo}
-        return render(request, 'list/index_list.html', contexto)
