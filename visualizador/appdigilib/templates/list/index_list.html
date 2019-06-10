@@ -7,8 +7,8 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">{{ articulo.title}}</div>
                     <div> {{ articulo.autor}}</div>
-                    {% load static %}
-                    <div class="panel-body"><img class="img-responsive" style="width:100%" src="{%static articulo.image.image.url%}"></div>
+
+                    <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{articulo.image.image.url}}"></div>
                     <div class="panel-footer">{{ articulo.published_date}}</div>
                 </div>
                 </a>
