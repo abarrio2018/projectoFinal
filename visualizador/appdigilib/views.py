@@ -39,3 +39,24 @@ class Article():
             form = ArticleForm
         return render(request, 'list/article.html', {'form': form})
 
+
+#Insertar con formulario
+def AdicionarImagen(request):
+    categorias = Categoria.objects.all()
+    tareas = AnaliticTask.objects.all()
+
+    if request.method == 'POST':
+        form = ImagenForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('post_list')
+        else:
+            return redirect('error')
+    else:
+        form = ImagenForm
+    return render(request, 'list/article.html', {'form': form, 'categorias': categorias, 'tareas': tareas})
+
+
+def error(self):
+    return ('Arquivo com problema')

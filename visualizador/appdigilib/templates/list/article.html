@@ -2,7 +2,7 @@
 {% block content%}
             <div class="col-md-4">
                 <div class="panel panel-primary">
-                    <form method="post" class="post-form">{%csrf_token %}
+                    <form method="POST" enctype="multipart/form-data" class="post-form">{%csrf_token %}
                         {{ form.as_p }}
                         <button type="submit">Adicionar</button>
                     </form>
