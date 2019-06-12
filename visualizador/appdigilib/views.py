@@ -37,7 +37,7 @@ def Lista_Articulo(categoria, articulos_actuales):
     return articulos_actuales
 
 
-#Busca si un articulo tiene una determinada categorìas
+#Busca si un articulo tiene una determinada categorìa
 def CateSerach(sarticulo, scategoria):
     myarticulo= Articulo(sarticulo)
     buscar_categoria= Categoria(scategoria)
@@ -48,7 +48,7 @@ def CateSerach(sarticulo, scategoria):
           return True
     return False
 
-#Busca si un artìculo tiene determinada tareas analìticas
+#Busca si un artìculo tiene determinada tarea analìtica
 def TaskSearch(sarticulo, stask):
     myarticulo = Articulo(sarticulo)
     busca_task = AnaliticTask(stask)

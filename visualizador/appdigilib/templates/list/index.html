@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
         <!--My personalizaded CSS-->
     <link rel="stylesheet" href="{% static 'css/style1.css' %}">
-    <!-- Librería jQuery requerida por los plugins de JavaScript
+    <!-- Librería jQuery requerida por los plugins de JavaScript-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"> </script>
     <script src="/appdigilib/media/js/checks.js"></script>
 
@@ -26,7 +26,7 @@
         <div class="container text-center">
              <h1>Digital Library</h1>
              <p>A Visual Survey of Text Mining Visualization for Requirement Engineering</p>
-            <input type="checkbox" id="check1" onclick="marcadesmarca()"> prueba</input>
+
         </div>
         <!--<a type="" href="{% url 'nova_img' %}">Imagen</a>-->
     </div>
@@ -41,7 +41,7 @@
                             {% for tarea in tareas %}
 
                                 <label>
-                                    <input type="checkbox" name="check" aria-label="Checkbox for following text input" aria-valuetext="Source" checked>
+                                    <input type="checkbox" class="check" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
                                     {{tarea.task}}
                                 </label>
 
@@ -53,7 +53,7 @@
                         {% if categorias %}
                             {% for categoria in categorias %}
                                 <label>
-                                   <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source" checked onclick="comprobar()">
+                                   <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{categoria.categoria}}">
                                    {{categoria.categoria}}
                                 </label>
                             {% endfor%}
