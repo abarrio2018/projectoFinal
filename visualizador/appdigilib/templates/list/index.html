@@ -41,7 +41,7 @@
                             {% for tarea in tareas %}
 
                                 <label>
-                                    <input type="checkbox" name="{{tarea.task}}" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
+                                    <input class="check" type="checkbox" name="{{tarea.task}}" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
                                     {{tarea.task}}
                                 </label>
 
@@ -53,7 +53,7 @@
                         {% if categorias %}
                             {% for categoria in categorias %}
                                 <label>
-                                   <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{categoria.categoria}}">
+                                   <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{categoria.categoria}}">
                                    {{categoria.categoria}}
                                 </label>
                             {% endfor%}
@@ -63,15 +63,15 @@
 
                     <li class="list-group-item">Source</li>
                         <label>
-                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
                              UML Diagram
                         </label>
                         <label>
-                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
                             User History
                             </label>
                         <label>
-                            <input type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
+                            <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
                             Document Repository
                         </label>
                 </ul>

@@ -1,12 +1,13 @@
 
-$(document).click(function comprobar() {
-    if($(this).is(':checked')) {
-        alert('Sim');
-      }
-    else {
-        alert('no')
-        mycheck= $(this).text($(this));
-        alert(mycheck);
-      }
-});
 
+$(document).ready(function() {
+
+    $('.check').change(function() {
+        if(this.checked) {
+            
+            alert("si")
+        }else{
+          alert("no")
+        }
+    });
+});
