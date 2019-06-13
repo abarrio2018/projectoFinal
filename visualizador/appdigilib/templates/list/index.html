@@ -41,7 +41,7 @@
                             {% for tarea in tareas %}
 
                                 <label>
-                                    <input type="checkbox" class="check" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
+                                    <input type="checkbox" name="{{tarea.task}}" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
                                     {{tarea.task}}
                                 </label>
 
