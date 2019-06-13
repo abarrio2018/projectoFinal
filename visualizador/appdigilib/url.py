@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
 
     path('Imagem/nova', AdicionarImagen, name ='nova_img'),
+    path('index',views.listado, name='post_list'),
 
 ]
 if settings.DEBUG:
