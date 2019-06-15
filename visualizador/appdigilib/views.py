@@ -16,42 +16,58 @@ from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 #   @Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones en la vista
 @requires_csrf_token
 def listado(request):
-    #Peticion para todo en la base de dato
+
+    #Peticion para recuperar toda las categorias y las tareas del banco. Ellas siempre se muestran en menu izquierdo
     categorias = Categoria.objects.all()
     tareas = AnaliticTask.objects.all()
 
+    #Peticion al la funcionalidad Actualizar articulo, para comproobar si se puede mostrar este articulo
     articulos = actualizar_articuloXcategoria(request)
 
+    #Hacer un DISTINT para actualizar los articulos dependiendo tambien las tareas
+
+    #Peticion para buscar las imagenes de los articulos
     imagenes = Image.objects.all().order_by('articulo')
+
     return render(request, 'list/index_list.html',
                   {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
 
 
-#   Metodo para actualizar los articulos dependiento de las categoria marcadas en la vista:
+#  Metodo para actualizar los articulos que van a mostrarse dependiento de las categoria marcadas en la vista:
 #   Entrada: @peticion Ajax de la vista
-#   @Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo es esa, lo quita
+#   Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo es esa, lo quita
 #   de la lista de articulos a mostrar
 @requires_csrf_token
 def actualizar_articuloXcategoria(request):
-    if request == 'POST':
+
+    if request.method == 'POST':
         categoria_desmarcada = request.POST
         art_activo = []
         print("Paso1 "+categoria_desmarcada)
 
-        for articulo in Articulo:
-            tus_categoria = Articulo.categoria.filter(activo=True)
-            #list(range(0, 30, 3))
+        #Para cada articulo en BD
+        for articulo in Articulo.objects.all():
+
+            #Guardo sus categorias activas
+            tus_categoria = articulo.categoria.filter(activo=True)
+
+            # Para cada categoria desmarcada
             for des_cat in categoria_desmarcada:
+
+                #Pregunto si la categoria esta en el articulo para desmarcarla
                 if CateSerach(articulo, des_cat):
                     articulo.categoria.activo = False
                     print("Paso2 "+des_cat)
 
+            # Compruebo si no le quedan categorias marcadas
             if tus_categoria.count() != 0:
                 art_activo += articulo
     else:
+        #Si no vienes por el POST, cargo todos los articulos almacenados
         print("Paso3")
         art_activo = Articulo.objects.all().order_by('image__articulo__published_date')
 
+    #Devuelvo los articulos que tienen categorias activas
     return art_activo
 
 @requires_csrf_token
@@ -65,24 +81,7 @@ def actualizar_articuloXtask(request):
     return render(request, 'list/index_list.html',
                 {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
 
-    #Comprobacion de lo que viene de la vista marcado
-"""    if request.method == 'POST':
-       data = request
-       for a in articulos:
-           if( (a.categoria.count()== 1 ) and (a.categoria == data)):
-               articulos= articulos.delete(a)"""
 
-
-#Comprobar articulos
-def Lista_Articulo(categoria, articulos_actuales):
-    articulos_actuales = Articulo(articulos_actuales)
-    categoria_eliminada = Categoria(categoria)
-
-    for a in articulos_actuales:
-        if((CateSerach(a,categoria_eliminada)) & (CantCategorias(a)==1)):
-            articulos_actuales = articulos_actuales.delete(a)
-
-    return articulos_actuales
 
 
 #Busca si un articulo tiene una determinada categorìa
@@ -107,6 +106,7 @@ def TaskSearch(sarticulo, stask):
             return True
     return False
 
+
 #Contar categoria de un articulo determinado
 def CantCategorias(articulo):
     myarticulo= Articulo(articulo)
@@ -119,7 +119,7 @@ def CantTareas(articulo):
     return myarticulo.task.all().count()
 
 
-#Insertar con formulario
+#Insertar articulo con formulario
 class Article():
 
     def AdicionarArticulo(request):
@@ -134,7 +134,7 @@ class Article():
         return render(request, 'list/article.html', {'form': form})
 
 
-#Insertar con formulario
+#Insertar imagen con formulario
 def AdicionarImagen(request):
     categorias = Categoria.objects.all()
     tareas = AnaliticTask.objects.all()
@@ -154,3 +154,8 @@ def AdicionarImagen(request):
 
 def error(request):
     return HttpResponse("Algo deu errado")
+
+def Search():
+    #usuarios = Usuarios.objects.filter(nome__icontains='Jonh')
+    return HttpResponse("Estas buscando que?")
+
