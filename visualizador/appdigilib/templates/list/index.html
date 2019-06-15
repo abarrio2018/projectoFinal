@@ -8,8 +8,8 @@
     <!-- Bootstrap CSS
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-        <!--My personalizaded CSS-->
-    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <!--My personalizaded CSS-->
+    <!--<link rel="stylesheet" href="{% static 'css/style1.css' %}">-->
     <!-- Librería jQuery requerida por los plugins de JavaScript-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -41,7 +41,7 @@
                             {% for tarea in tareas %}
 
                                 <label>
-                                    <input class="check" type="checkbox" name="{{tarea.task}}" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
+                                    <input class="check_task" type="checkbox" name="{{tarea.task}}" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
                                     {{tarea.task}}
                                 </label>
 
@@ -53,7 +53,7 @@
                         {% if categorias %}
                             {% for categoria in categorias %}
                                 <label>
-                                   <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{categoria.categoria}}">
+                                   <input class="check_cat" type="checkbox" name="{{categoria.categoria}}" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{categoria.categoria}}">
                                    {{categoria.categoria}}
                                 </label>
                             {% endfor%}
@@ -63,18 +63,14 @@
 
                     <li class="list-group-item">Source</li>
                         <label>
-                            <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
-                             UML Diagram
+                            <input class="check" type="checkbox" name ="DOCUMENT" aria-label="Checkbox for following text input" aria-valuetext="Source" CHECKED>
+                             DOCUMENT
                         </label>
                         <label>
-                            <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
-                            User History
-                            </label>
-                        <label>
-                            <input class="check" type="checkbox" aria-label="Checkbox for following text input" aria-valuetext="Source">
-                            Document Repository
+                            <input class="check" type="checkbox" name="OTHER" aria-label="Checkbox for following text input" aria-valuetext="Source" CHECKED>
+                            OTHER
                         </label>
-                </ul>
+                    </ul>
                 </nav>
            </div>
         </div>

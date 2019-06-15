@@ -1,25 +1,37 @@
 $(document).ready(function() {
 
-    $('.check').change(function() {
+    $('.check_task').change(function() {
 
-        $( '.check' ).each(function( index ) {
-            var lista_check = [];
+        var lista_task = [];
+        $( '.check_task' ).each(function( index ) {
+
             if(this.checked) {
-                alert("si")
+                alert("si");
             }
             else{
-                alert("no");
-                var lista_check = lista_check.add( $(this).val());
-
-                $.ajax({
-                    type:"POST",
-                    url:"index/",
-                    data: lista_check
-                });
-
-
+                alert($(this).attr('name'));
+                lista_task.push($(this).attr('name'));
+                alert(lista_task);
             }
-            alert(lista_check);
+
+        });
+
+    });
+
+    $('.check_cat').change(function() {
+
+        var lista_cat = [];
+        $( '.check_cat' ).each(function( index ) {
+            if(this.checked) {
+                alert("si");
+            }
+            else{
+                alert($(this).attr('name'));
+                lista_cat.push($(this).attr('name'));
+                alert(lista_cat);
+            }
+
         });
     });
-})
+
+});

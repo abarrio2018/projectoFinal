@@ -13,16 +13,27 @@ from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 
 
 def listado(request):
+    #Peticion para todo en la base de dato
     categorias = Categoria.objects.all()
     tareas = AnaliticTask.objects.all()
     articulos = Articulo.objects.all().order_by('image__articulo__published_date')
-    imagenes= Image.objects.all().order_by('articulo')
+    imagenes = Image.objects.all().order_by('articulo')
+    return render(request, 'list/index_list.html',
+                  {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
+
+
+    #Comprobacion de lo que viene de la vista marcado
+"""    if request.method == 'POST':
+       data = request
+       for a in articulos:
+           if( (a.categoria.count()== 1 ) and (a.categoria == data)):
+               articulos= articulos.delete(a)"""
 
     #file = request.FILES
     #imag = PIL.Image.open('images/index.jpeg')
 #    imag.load()
 #    imag.split()
-    return render(request, 'list/index_list.html', {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes':imagenes})
+
 
 
 #Comprobar articulos
