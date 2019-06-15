@@ -89,9 +89,10 @@
 
     <footer class="container-fluid text-center">
         <p align="center">Copyright</p>
-            <form class="form-inline align-center">Enter the text:
+            <form method="POST" class="form-inline align-center" action=""> {%csrf_token %}
+                Enter the text:
                 <input type="email" class="form-control" size="50" placeholder="Text" align="center">
-                <button type="button" class="btn btn-danger">Search</button>
+                <button type="submit" class="btn btn-danger" onclick="">Search</button>
             </form>
     </footer>
 </html>
