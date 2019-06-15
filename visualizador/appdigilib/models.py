@@ -7,6 +7,7 @@ from datetime import date
 
 class Categoria(models.Model):
     categoria= models.CharField(max_length=250)
+    activo = models.BooleanField()
 
     def __str__(self):
        return self.categoria
@@ -37,7 +38,6 @@ class Articulo(models.Model):
         return self.timestamp.strftime('%Y')
 
     def StrArticulo(self):
-
         cadena = "{1},{0}"
         return cadena.format(self.title, self.autor)
 

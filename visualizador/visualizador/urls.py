@@ -21,7 +21,6 @@ from appdigilib import views
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('',views.listado, name='post_list'),
     path('', include('appdigilib.url')),
 
 ]
