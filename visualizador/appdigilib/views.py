@@ -31,12 +31,15 @@ def listado(request):
 #   Entrada: @peticion Ajax de la vista
 #   @Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo es esa, lo quita
 #   de la lista de articulos a mostrar
-@requires_csrf_token
+#@requires_csrf_token
 def actualizar_articuloXcategoria(request):
-    if request == 'POST':
-        categoria_desmarcada = request.POST
+
+    if request.method == 'POST':
+        categoria_desmarcada = request.POST.get('lista[]')
+        print(categoria_desmarcada)
+        json_data = JSON.dumps(categoria_desmarcada)
+        return HttpResponse(json_data, content_type="application/json")
         art_activo = []
-        print("Paso1 "+categoria_desmarcada)
 
         for articulo in Articulo:
             tus_categoria = Articulo.categoria.filter(activo=True)
