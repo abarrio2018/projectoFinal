@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 import urllib3
 import json as JSON
+from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import JsonResponse, HttpResponse
@@ -16,59 +17,51 @@ from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 #   @Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones en la vista
 @requires_csrf_token
 def listado(request):
-
-    #Peticion para recuperar toda las categorias y las tareas del banco. Ellas siempre se muestran en menu izquierdo
+    #Peticion para todo en la base de dato
     categorias = Categoria.objects.all()
     tareas = AnaliticTask.objects.all()
-
-    #Peticion al la funcionalidad Actualizar articulo, para comproobar si se puede mostrar este articulo
-    articulos = actualizar_articuloXcategoria(request)
-
-    #Hacer un DISTINT para actualizar los articulos dependiendo tambien las tareas
-
-    #Peticion para buscar las imagenes de los articulos
     imagenes = Image.objects.all().order_by('articulo')
-
+    articulos = Articulo.objects.all().order_by('published_date')
     return render(request, 'list/index_list.html',
                   {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
 
 
-#  Metodo para actualizar los articulos que van a mostrarse dependiento de las categoria marcadas en la vista:
+#   Metodo para actualizar los articulos dependiento de las categoria marcadas en la vista:
 #   Entrada: @peticion Ajax de la vista
-#   Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo es esa, lo quita
+#   @Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo es esa, lo quita
 #   de la lista de articulos a mostrar
 @requires_csrf_token
 def actualizar_articuloXcategoria(request):
 
     if request.method == 'POST':
-        categoria_desmarcada = request.POST
+        categoria_desmarcada = request.POST.get('lista_c[]')
+        print(categoria_desmarcada)
+
+
+        todos_articulos = Articulo.objects.all()
+        print(categoria_desmarcada)
+        #print(categoria_marcada)
+
         art_activo = []
-        print("Paso1 "+categoria_desmarcada)
+        for articulo in todos_articulos:
+            tus_categoria = articulo.categoria.filter(articulo__categoria__articulo=True)
 
-        #Para cada articulo en BD
-        for articulo in Articulo.objects.all():
+            print(tus_categoria)
+            if CateSerach(articulo, categoria_desmarcada):
+                articulo.categoria.activo = False
+                print("Paso2 "+categoria_desmarcada)
 
-            #Guardo sus categorias activas
-            tus_categoria = articulo.categoria.filter(activo=True)
-
-            # Para cada categoria desmarcada
-            for des_cat in categoria_desmarcada:
-
-                #Pregunto si la categoria esta en el articulo para desmarcarla
-                if CateSerach(articulo, des_cat):
-                    articulo.categoria.activo = False
-                    print("Paso2 "+des_cat)
-
-            # Compruebo si no le quedan categorias marcadas
             if tus_categoria.count() != 0:
                 art_activo += articulo
     else:
-        #Si no vienes por el POST, cargo todos los articulos almacenados
         print("Paso3")
-        art_activo = Articulo.objects.all().order_by('image__articulo__published_date')
+        art_activo = Articulo.objects.all().values(Articulo.title, Articulo.autor)
+        html = render_to_string('list/render.html', {'articulos': art_activo})
+        return HttpResponse(html)
 
-    #Devuelvo los articulos que tienen categorias activas
-    return art_activo
+    #json_data = JSON.dumps(art_activo, ensure_ascii= False)
+    #return HttpResponse(json_data, content_type="application/json")
+    return JsonResponse(dict(list(art_activo)))
 
 @requires_csrf_token
 def actualizar_articuloXtask(request):
@@ -82,13 +75,23 @@ def actualizar_articuloXtask(request):
                 {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
 
 
+#Comprobar articulos
+def Lista_Articulo(categoria, articulos_actuales):
+    articulos_actuales = Articulo(articulos_actuales)
+    categoria_eliminada = Categoria(categoria)
+
+    for a in articulos_actuales:
+        if((CateSerach(a,categoria_eliminada)) & (CantCategorias(a)==1)):
+            articulos_actuales = articulos_actuales.delete(a)
+
+    return articulos_actuales
 
 
 #Busca si un articulo tiene una determinada categorìa
 def CateSerach(sarticulo, scategoria):
-    myarticulo= Articulo(sarticulo)
+    #myarticulo= Articulo(sarticulo)
     buscar_categoria= Categoria(scategoria)
-    list_cat_art = myarticulo.categoria.all()
+    list_cat_art = sarticulo.categoria.all()
 
     for c in list_cat_art:
         if(c == buscar_categoria):
@@ -106,7 +109,6 @@ def TaskSearch(sarticulo, stask):
             return True
     return False
 
-
 #Contar categoria de un articulo determinado
 def CantCategorias(articulo):
     myarticulo= Articulo(articulo)
@@ -119,7 +121,7 @@ def CantTareas(articulo):
     return myarticulo.task.all().count()
 
 
-#Insertar articulo con formulario
+#Insertar con formulario
 class Article():
 
     def AdicionarArticulo(request):
@@ -134,7 +136,7 @@ class Article():
         return render(request, 'list/article.html', {'form': form})
 
 
-#Insertar imagen con formulario
+#Insertar con formulario
 def AdicionarImagen(request):
     categorias = Categoria.objects.all()
     tareas = AnaliticTask.objects.all()
@@ -154,8 +156,3 @@ def AdicionarImagen(request):
 
 def error(request):
     return HttpResponse("Algo deu errado")
-
-def Search():
-    #usuarios = Usuarios.objects.filter(nome__icontains='Jonh')
-    return HttpResponse("Estas buscando que?")
-

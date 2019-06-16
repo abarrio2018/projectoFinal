@@ -11,6 +11,8 @@ urlpatterns = [
     path('index/c1',views.actualizar_articuloXcategoria, name='list_cat'),
     path('index/c2', views.actualizar_articuloXtask, name='list_task'),
 
+    #path('search/', views.Search, name ='buscar'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
