@@ -34,34 +34,29 @@ def listado(request):
 def actualizar_articuloXcategoria(request):
 
     if request.method == 'POST':
-        categoria_desmarcada = request.POST.get('lista_c[]')
-        print(categoria_desmarcada)
+        categoria_marcada = request.POST.get('list_marcados[]')
+        print(categoria_marcada)
+
+        todos_art = list(Articulo.objects.all().prefetch_related('categorias'))
+        articulos_mostrar = list(Articulo.objects.all().filter(categorias__articulo__articulo_categoria__exact=categoria_marcada))
 
 
-        todos_articulos = Articulo.objects.all()
-        print(categoria_desmarcada)
-        #print(categoria_marcada)
 
-        art_activo = []
-        for articulo in todos_articulos:
-            tus_categoria = articulo.categoria.filter(articulo__categoria__articulo=True)
+        print(todos_art)
+        print(categoria_marcada)
+        print(articulos_mostrar)
+        #[list(pizza.toppings.filter(spicy=True)) for pizza in pizzas]
+        #tus_categoria = Categoria.objects.all().filter(articulo__categorias__articulo__in=todos_art)
+        #tus_categoria = Categoria.objects.all().filter(articulo__categorias__articulo_categoria__in=categoria_desmarcada)
 
-            print(tus_categoria)
-            if CateSerach(articulo, categoria_desmarcada):
-                articulo.categoria.activo = False
-                print("Paso2 "+categoria_desmarcada)
 
-            if tus_categoria.count() != 0:
-                art_activo += articulo
     else:
-        print("Paso3")
-        art_activo = Articulo.objects.all().values(Articulo.title, Articulo.autor)
-        html = render_to_string('list/render.html', {'articulos': art_activo})
-        return HttpResponse(html)
 
+        art_activo = Articulo.objects.all().values(Articulo.title, Articulo.autor)
     #json_data = JSON.dumps(art_activo, ensure_ascii= False)
     #return HttpResponse(json_data, content_type="application/json")
-    return JsonResponse(dict(list(art_activo)))
+    html = render_to_string('list/render.html', {'articulos': articulos_mostrar})
+    return HttpResponse(html)
 
 @requires_csrf_token
 def actualizar_articuloXtask(request):

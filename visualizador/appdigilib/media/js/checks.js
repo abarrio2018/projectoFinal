@@ -1,5 +1,15 @@
 $(document).ready(function() {
 
+    $('.check_cat').change(function() {
+        alert("Hola, no tienes error");
+        ajax_post_categorias();
+    });
+
+    $('.check_task').change(function() {
+        alert("Hola, no tienes error");
+        ajax_post_tareas();
+    });
+
 function getCookie(name) {
 
     var cookieValue = null;
@@ -19,16 +29,6 @@ function getCookie(name) {
 
     return cookieValue;
 };
-
-
-    $('.check_cat').change(function() {
-        alert("Hola, no tienes error");
-        ajax_post_categorias();
-    });
-
-    $('.check_task').change(function() {
-        ajax_post_tareas();
-    });
 
 async function ajax_post_tareas(){
      var lista_task = [];
@@ -62,16 +62,18 @@ async function ajax_post_tareas(){
     };
 
 async function ajax_post_categorias() {
-    var lista_cat = [];
-    //var list_marcados = [];
+    var lista_cat_des = [];
+    var list_marcados = [];
+
         $( '.check_cat' ).each(function( index ) {
             if(this.checked) {
-                //list_marcados.push($(this).attr('name'));
-                //alert(list_marcados);
+                list_marcados.push($(this).attr('name'));
+                alert(list_marcados);
+
             }
             else{
-                lista_cat.push($(this).attr('name'));
-                alert(lista_cat);
+                lista_cat_des.push($(this).attr('name'));
+
             }
         });
         //var csrf;
@@ -84,7 +86,8 @@ async function ajax_post_categorias() {
             url:'index/c1',
             dataType:'html',
             data: {
-                'lista_c': lista_cat,
+                //'lista_c': lista_cat_des,
+                'lista_marcados': list_marcados,
 
             },
             success: function(json){

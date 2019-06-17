@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="132a39d0-7044-45b4-b878-2ac685b80921" name="Default Changelist" comment="Paper images">
-      <change afterPath="$PROJECT_DIR$/appdigilib/templates/list/render.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../digilib/bin/django-admin" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/bin/django-admin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../digilib/bin/django-admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/bin/django-admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../digilib/bin/pip" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/bin/pip" afterDir="false" />
@@ -1196,9 +1195,10 @@
       <change beforePath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/django/views/templates/technical_500.html" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/django/views/templates/technical_500.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/pip-19.1.1.dist-info/RECORD" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/pip-19.1.1.dist-info/RECORD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appdigilib/media/js/checks.js" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/media/js/checks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appdigilib/templates/list/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/templates/list/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appdigilib/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appdigilib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1232,43 +1232,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+            <state relative-caret-position="240">
+              <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
               <folding>
-                <element signature="e#61#781#0" />
-                <element signature="e#162#727#0" />
-                <element signature="e#1081#1096#0" />
-                <element signature="e#1113#1183#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="66" lean-forward="true" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
-              <folding>
-                <element signature="n#label#2;n#ul#0;n#nav#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#label#3;n#ul#0;n#nav#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+                <element signature="e#255#791#0" />
+                <element signature="e#829#1639#0" />
+                <element signature="e#1680#2632#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="13" column="66" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="36" column="56" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="56" />
+            <state relative-caret-position="81">
+              <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#2363#2738#0" />
-                <element signature="e#3076#3373#0" />
-                <element signature="e#3473#3696#0" />
-                <element signature="e#3792#4000#0" />
-                <element signature="e#4081#4157#0" />
+                <element signature="e#2680#3055#0" />
+                <element signature="e#3134#3431#0" />
+                <element signature="e#3531#3754#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appdigilib/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+                <element signature="e#219#350#0" />
+                <element signature="e#390#478#0" />
+                <element signature="e#511#612#0" />
+                <element signature="e#1293#1412#0" />
+                <element signature="e#1528#1700#0" />
               </folding>
             </state>
           </provider>
@@ -1289,6 +1299,7 @@
     <findStrings>
       <find>DJANGO_SETTINGS_MODULE</find>
       <find>on</find>
+      <find>list_cat_art</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -1309,19 +1320,19 @@
         <option value="$PROJECT_DIR$/appdigilib/template/list/index.html" />
         <option value="$PROJECT_DIR$/appdigilib/xploreapi.py" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/categoria.html" />
-        <option value="$PROJECT_DIR$/appdigilib/admin.py" />
-        <option value="$PROJECT_DIR$/appdigilib/forms.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/article.html" />
         <option value="$PROJECT_DIR$/visualizador/settings.py" />
         <option value="$PROJECT_DIR$/appdigilib/tests.py" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/index_list.html" />
-        <option value="$PROJECT_DIR$/appdigilib/models.py" />
         <option value="$PROJECT_DIR$/visualizador/urls.py" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/search.html" />
         <option value="$PROJECT_DIR$/appdigilib/url.py" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/render.html" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/index.html" />
+        <option value="$PROJECT_DIR$/appdigilib/forms.py" />
+        <option value="$PROJECT_DIR$/appdigilib/models.py" />
+        <option value="$PROJECT_DIR$/appdigilib/admin.py" />
         <option value="$PROJECT_DIR$/appdigilib/views.py" />
         <option value="$PROJECT_DIR$/appdigilib/media/js/checks.js" />
       </list>
@@ -1339,6 +1350,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1359,27 +1371,17 @@
             </path>
             <path>
               <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualizador" type="462c0819:PsiDirectoryNode" />
-              <item name="appdigilib" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
               <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualizador" type="462c0819:PsiDirectoryNode" />
-              <item name="appdigilib" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualizador" type="462c0819:PsiDirectoryNode" />
-              <item name="visualizador" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 &gt;" type="70bed36:NamedLibraryElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1543,7 +1545,8 @@
       <workItem from="1560483018519" duration="1774000" />
       <workItem from="1560542946739" duration="7099000" />
       <workItem from="1560561520868" duration="14983000" />
-      <workItem from="1560608764820" duration="33425000" />
+      <workItem from="1560608764820" duration="33603000" />
+      <workItem from="1560708726761" duration="19719000" />
     </task>
     <task id="LOCAL-00001" summary="Create Form">
       <created>1559275177058</created>
@@ -1783,17 +1786,23 @@
       <option name="project" value="LOCAL" />
       <updated>1560637381133</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Paper images">
+      <created>1560663448571</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1560663448571</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274493000" />
+    <option name="totallyTimeSpent" value="294390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="638" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973262" visible="true" weight="0.25379092" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973262" visible="true" weight="0.17238627" />
       <window_info id="Structure" order="1" sideWeight="0.5026738" side_tool="true" weight="0.23383878" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3280943" />
@@ -1807,7 +1816,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3280943" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5019952" side_tool="true" weight="0.29666013" />
       <window_info anchor="bottom" id="Favorites" order="11" weight="0.3280943" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4980048" visible="true" weight="0.25540274" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4980048" visible="true" weight="0.35559922" />
       <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49960095" weight="0.32612967" />
       <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="15" weight="0.3280943" />
@@ -1958,16 +1967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1995,16 +1994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3631">
           <caret line="182" column="8" selection-start-line="182" selection-start-column="8" selection-end-line="182" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2067,16 +2056,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/visualizador/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-          <folding>
-            <element signature="e#636#668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -2084,35 +2063,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="36" column="56" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#2363#2738#0" />
-            <element signature="e#3076#3373#0" />
-            <element signature="e#3473#3696#0" />
-            <element signature="e#3792#4000#0" />
-            <element signature="e#4081#4157#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/render.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="9" column="34" lean-forward="true" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2126,26 +2080,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
+    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+        <state relative-caret-position="15">
+          <caret line="13" column="66" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requerimentos.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visualizador/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding>
-            <element signature="e#61#781#0" />
-            <element signature="e#162#727#0" />
-            <element signature="e#1081#1096#0" />
-            <element signature="e#1113#1183#0" />
+            <element signature="e#636#668#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
+    <entry file="file://$PROJECT_DIR$/appdigilib/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="66" lean-forward="true" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
+        <state relative-caret-position="135">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
           <folding>
-            <element signature="n#label#2;n#ul#0;n#nav#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#label#3;n#ul#0;n#nav#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#219#350#0" />
+            <element signature="e#390#478#0" />
+            <element signature="e#511#612#0" />
+            <element signature="e#1293#1412#0" />
+            <element signature="e#1528#1700#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+          <folding>
+            <element signature="e#255#791#0" />
+            <element signature="e#829#1639#0" />
+            <element signature="e#1680#2632#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#2680#3055#0" />
+            <element signature="e#3134#3431#0" />
+            <element signature="e#3531#3754#0" />
           </folding>
         </state>
       </provider>
