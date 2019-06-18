@@ -49,7 +49,7 @@ async function ajax_post_tareas(){
             url:'index/c1',
             dataType: 'html',
             data: {
-              'lista': lista_task,
+              'lista': [lista_task],
               },
             success: function(json){
               $('#content1').html(json);
@@ -68,7 +68,6 @@ async function ajax_post_categorias() {
         $( '.check_cat' ).each(function( index ) {
             if(this.checked) {
                 list_marcados.push($(this).attr('name'));
-                alert(list_marcados);
 
             }
             else{
@@ -87,11 +86,11 @@ async function ajax_post_categorias() {
             dataType:'html',
             data: {
                 //'lista_c': lista_cat_des,
-                'lista_marcados': list_marcados,
+                'lista': list_marcados,
 
             },
             success: function(json){
-                alert('suceso1');
+                $('#content1').html(json);
             },
             error: function(xhr, status, error) {
                 alert("error");

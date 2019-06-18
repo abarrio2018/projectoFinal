@@ -40,22 +40,25 @@ def actualizar_articuloXcategoria(request):
     #Compruebo si viene por el POST
     if request.method == 'POST':
         #Guardo la lista de categorias que envio el Ajax
-        categoria_marcada = list(request.POST.get('lista_marcados[]'))
+        categoria_marcada = request.POST.getlist('lista[]')
         print(categoria_marcada)
 
 
         todos_art = []  #Para almacenar los articulos que voy a mostrar
         articulos_mostrar = list(Articulo.objects.all().prefetch_related('categorias'))
+        print(articulos_mostrar)
 
         #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @todos_art
         for x in range(0,len(articulos_mostrar)):
 
             cont = 0
             for y in range(0,len(categoria_marcada)):
+                print(categoria_marcada[y])
                 if( CateSerach(articulos_mostrar[x], categoria_marcada[y])):
-                    cont+1
-            if cont != 0:
-                todos_art.append(articulos_mostrar[x])
+                    todos_art.append(articulos_mostrar[x])
+                    print('catesearch true')
+            #if cont != 0:
+            #    todos_art.append(articulos_mostrar[x])
             print(cont)
 
     else:
@@ -84,12 +87,12 @@ def actualizar_articuloXtask(request):
 #Devuelve True si ese articulo tiene esa categoria, False en caso contrario
 def CateSerach(sarticulo, scategoria):
 
-    buscar_categoria= Categoria(scategoria) #La categoria que voy a buscar en la lista que tiene el articulo
+    #buscar_categoria= Categoria(scategoria) #La categoria que voy a buscar en la lista que tiene el articulo
     list_cat_art = list(sarticulo.categorias.all())     #Todas las categorias del articulo
-
+    print('CateSerach')
     #Para cada categoria del articulo si es igual a la entrada
     for c in range(0,len(list_cat_art)):
-        if(c == buscar_categoria):
+        if(list_cat_art[c].categoria == scategoria):
           return True
     return False
 
