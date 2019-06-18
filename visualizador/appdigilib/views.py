@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import JsonResponse, HttpResponse
 from .forms import *
+from django.db.models import Q
 from django.template import RequestContext
 from appdigilib.models import Articulo, Categoria, AnaliticTask, Image
 from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
@@ -14,49 +15,56 @@ from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 
 #   Metodo para renderizar la pagina principal:
 #   Entrada: @categoria, @tareas_analiticas, @articulos
-#   @Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones en la vista
+#   @Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones hecha en la vista
+#   Devuelve: @lista de articulos
 @requires_csrf_token
 def listado(request):
-    #Peticion para todo en la base de dato
-    categorias = Categoria.objects.all()
-    tareas = AnaliticTask.objects.all()
-    imagenes = Image.objects.all().order_by('articulo')
-    articulos = Articulo.objects.all().order_by('published_date')
+
+    categorias = Categoria.objects.all()                                #Extrae todas las cateorias insertadas
+    tareas = AnaliticTask.objects.all()                                 #EXtrae todas las tareas analiticas insertadas
+    imagenes = Image.objects.all().order_by('articulo')                 #Extrae las imagenes de los articulos
+    articulos = Articulo.objects.all().order_by('published_date')       #Extrae los articulos
+
     return render(request, 'list/index_list.html',
                   {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
 
 
+
 #   Metodo para actualizar los articulos dependiento de las categoria marcadas en la vista:
 #   Entrada: @peticion Ajax de la vista
-#   @Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo es esa, lo quita
+#   @Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo tiene esa categoria, lo quita
 #   de la lista de articulos a mostrar
 @requires_csrf_token
 def actualizar_articuloXcategoria(request):
 
+    #Compruebo si viene por el POST
     if request.method == 'POST':
-        categoria_marcada = request.POST.get('list_marcados[]')
+        #Guardo la lista de categorias que envio el Ajax
+        categoria_marcada = list(request.POST.get('lista_marcados[]'))
         print(categoria_marcada)
 
-        todos_art = list(Articulo.objects.all().prefetch_related('categorias'))
-        articulos_mostrar = list(Articulo.objects.all().filter(categorias__articulo__articulo_categoria__exact=categoria_marcada))
 
+        todos_art = []  #Para almacenar los articulos que voy a mostrar
+        articulos_mostrar = list(Articulo.objects.all().prefetch_related('categorias'))
 
+        #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @todos_art
+        for x in range(0,len(articulos_mostrar)):
 
-        print(todos_art)
-        print(categoria_marcada)
-        print(articulos_mostrar)
-        #[list(pizza.toppings.filter(spicy=True)) for pizza in pizzas]
-        #tus_categoria = Categoria.objects.all().filter(articulo__categorias__articulo__in=todos_art)
-        #tus_categoria = Categoria.objects.all().filter(articulo__categorias__articulo_categoria__in=categoria_desmarcada)
-
+            cont = 0
+            for y in range(0,len(categoria_marcada)):
+                if( CateSerach(articulos_mostrar[x], categoria_marcada[y])):
+                    cont+1
+            if cont != 0:
+                todos_art.append(articulos_mostrar[x])
+            print(cont)
 
     else:
+        todos_art = Articulo.objects.all().values(Articulo.title, Articulo.autor)
 
-        art_activo = Articulo.objects.all().values(Articulo.title, Articulo.autor)
-    #json_data = JSON.dumps(art_activo, ensure_ascii= False)
-    #return HttpResponse(json_data, content_type="application/json")
-    html = render_to_string('list/render.html', {'articulos': articulos_mostrar})
+    html = render_to_string('list/render.html', {'articulos': todos_art})
     return HttpResponse(html)
+
+
 
 @requires_csrf_token
 def actualizar_articuloXtask(request):
@@ -70,50 +78,52 @@ def actualizar_articuloXtask(request):
                 {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
 
 
-#Comprobar articulos
-def Lista_Articulo(categoria, articulos_actuales):
-    articulos_actuales = Articulo(articulos_actuales)
-    categoria_eliminada = Categoria(categoria)
 
-    for a in articulos_actuales:
-        if((CateSerach(a,categoria_eliminada)) & (CantCategorias(a)==1)):
-            articulos_actuales = articulos_actuales.delete(a)
-
-    return articulos_actuales
-
-
-#Busca si un articulo tiene una determinada categorìa
+#Metodo auxiliar que busca si un articulo tiene una determinada categorìa
+# Entrada:@un articulo, @una categoria
+#Devuelve True si ese articulo tiene esa categoria, False en caso contrario
 def CateSerach(sarticulo, scategoria):
-    #myarticulo= Articulo(sarticulo)
-    buscar_categoria= Categoria(scategoria)
-    list_cat_art = sarticulo.categoria.all()
 
-    for c in list_cat_art:
+    buscar_categoria= Categoria(scategoria) #La categoria que voy a buscar en la lista que tiene el articulo
+    list_cat_art = list(sarticulo.categorias.all())     #Todas las categorias del articulo
+
+    #Para cada categoria del articulo si es igual a la entrada
+    for c in range(0,len(list_cat_art)):
         if(c == buscar_categoria):
           return True
     return False
 
-#Busca si un artìculo tiene determinada tarea analìtica
-def TaskSearch(sarticulo, stask):
-    myarticulo = Articulo(sarticulo)
-    busca_task = AnaliticTask(stask)
-    list_task_art = myarticulo.task.all()
 
+#Metodo auxiliar que busca si un articulo tiene una determinada tarea analitica
+# Entrada:@un articulo, @una tarea
+#Devuelve True si ese articulo tiene esa tarea, False en caso contrario
+def TaskSearch(sarticulo, stask):
+
+    busca_task = AnaliticTask(stask)    #La tarea que voy a buscar en el articulo
+    list_task_art = list(sarticulo.task.all())      #Lista de tareas del acrticulo
+
+    #Para cada tarea del articulo si es igual a la entrada
     for t in list_task_art:
         if t== busca_task:
             return True
     return False
 
-#Contar categoria de un articulo determinado
-def CantCategorias(articulo):
-    myarticulo= Articulo(articulo)
-    return myarticulo.categoria.all().count()
+
+#Metodo para busca articulos, dando una frase
+#Entrada:@ texto
+#Devuelve: @Lista de articulos que contienen el texto en el Titulo, Autor o Resumen
+def Search(request):
+
+    string = request.POST   #El texto que tengo que buscar
+
+    #Consulta para buscar por el titulo, autor y Resumen
+    articles_names = Articulo.objects.filter(Q(title_contains=string) | Q(autor_contains=string | Q(text_contains=string)))
+
+    html = render_to_string('list/render.html', {'articulos': articles_names})
+    return HttpResponse(html)
 
 
-#Contar tareas analitica de un articulo determinado
-def CantTareas(articulo):
-    myarticulo = Articulo(articulo)
-    return myarticulo.task.all().count()
+
 
 
 #Insertar con formulario
