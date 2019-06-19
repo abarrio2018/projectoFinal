@@ -89,9 +89,9 @@
 
     <footer class="container-fluid text-center">
         <p align="center">Copyright</p>
-            <form method="POST" class="form-inline align-center" action=""> {%csrf_token %}
+            <form method="POST" class="form-inline align-center" action="/"> {%csrf_token %}
                 Enter the text:
-                <input type="text" class="form-control" size="50" placeholder="Text" align="center">
+                <input type="text" name="search" class="form-control" size="50" placeholder="Text" align="center">
                 <button type="submit" class="btn btn-danger" onclick="{{ buscar }}">Search</button>
             </form>
     </footer>

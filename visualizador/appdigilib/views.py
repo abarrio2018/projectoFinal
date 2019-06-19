@@ -18,12 +18,20 @@ from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 #   @Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones hecha en la vista
 #   Devuelve: @lista de articulos
 @requires_csrf_token
-def listado(request):
+def listado(request = None, articulos = None):
 
+    #se method e' post e' porque e' chamado da busqueda
+    if request.method == 'POST':
+        string_search = request.POST.get('search')   #El texto que tengo que buscar
+        #Consulta para buscar por el titulo, autor y Resumen
+        # da error con esta busqueda... | Q(text__contains=string_search) ....debe ser por el tipo de dato en models
+        articulos = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search ))
+    else:
+                         #Extrae las imagenes de los articulos
+        articulos = Articulo.objects.all().order_by('published_date')       #Extrae los articulos
     categorias = Categoria.objects.all()                                #Extrae todas las cateorias insertadas
     tareas = AnaliticTask.objects.all()                                 #EXtrae todas las tareas analiticas insertadas
-    imagenes = Image.objects.all().order_by('articulo')                 #Extrae las imagenes de los articulos
-    articulos = Articulo.objects.all().order_by('published_date')       #Extrae los articulos
+    imagenes = Image.objects.all().order_by('articulo')
 
     return render(request, 'list/index_list.html',
                   {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
@@ -46,20 +54,16 @@ def actualizar_articuloXcategoria(request):
 
         todos_art = []  #Para almacenar los articulos que voy a mostrar
         articulos_mostrar = list(Articulo.objects.all().prefetch_related('categorias'))
-        print(articulos_mostrar)
+        #print(articulos_mostrar)
 
         #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @todos_art
         for x in range(0,len(articulos_mostrar)):
-
-            cont = 0
             for y in range(0,len(categoria_marcada)):
-                print(categoria_marcada[y])
                 if( CateSerach(articulos_mostrar[x], categoria_marcada[y])):
                     todos_art.append(articulos_mostrar[x])
-                    print('catesearch true')
+                    break
             #if cont != 0:
             #    todos_art.append(articulos_mostrar[x])
-            print(cont)
 
     else:
         todos_art = Articulo.objects.all().values(Articulo.title, Articulo.autor)
@@ -89,7 +93,6 @@ def CateSerach(sarticulo, scategoria):
 
     #buscar_categoria= Categoria(scategoria) #La categoria que voy a buscar en la lista que tiene el articulo
     list_cat_art = list(sarticulo.categorias.all())     #Todas las categorias del articulo
-    print('CateSerach')
     #Para cada categoria del articulo si es igual a la entrada
     for c in range(0,len(list_cat_art)):
         if(list_cat_art[c].categoria == scategoria):
@@ -117,13 +120,15 @@ def TaskSearch(sarticulo, stask):
 #Devuelve: @Lista de articulos que contienen el texto en el Titulo, Autor o Resumen
 def Search(request):
 
-    string = request.POST   #El texto que tengo que buscar
-
+    string_search = request.POST.get('search')   #El texto que tengo que buscar
+    print(string_search)
     #Consulta para buscar por el titulo, autor y Resumen
-    articles_names = Articulo.objects.filter(Q(title_contains=string) | Q(autor_contains=string | Q(text_contains=string)))
+    # da error con esta busqueda... | Q(text__contains=string_search) ....debe ser por el tipo de dato en models
+    articles_names = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search ))
 
-    html = render_to_string('list/render.html', {'articulos': articles_names})
-    return HttpResponse(html)
+    #html = render_to_string('list/render.html', {'articulos': articles_names})
+    #return HttpResponse(html)
+    return listado(request, articles_names)
 
 
 
