@@ -13,15 +13,16 @@ from appdigilib.models import Articulo, Categoria, AnaliticTask, Image
 from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 
 
-#   Metodo para renderizar la pagina principal:
-#   Entrada: @categoria, @tareas_analiticas, @articulos
-#   @Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones hecha en la vista
-#   Devuelve: @lista de articulos
+"""Metodo para renderizar la pagina principal:
+   Entrada: @categoria, @tareas_analiticas, @articulos
+   Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones hecha en la vista
+   Devuelve: @lista de articulos
+"""
 @requires_csrf_token
 def listado(request):
 
     categorias = Categoria.objects.all()                                #Extrae todas las cateorias insertadas
-    tareas = AnaliticTask.objects.all()                                 #EXtrae todas las tareas analiticas insertadas
+    tareas = AnaliticTask.objects.all()                                 #Extrae todas las tareas analiticas insertadas
     imagenes = Image.objects.all().order_by('articulo')                 #Extrae las imagenes de los articulos
     articulos = Articulo.objects.all().order_by('published_date')       #Extrae los articulos
 
@@ -30,21 +31,22 @@ def listado(request):
 
 
 
-#   Metodo para actualizar los articulos dependiento de las categoria marcadas en la vista:
-#   Entrada: @peticion Ajax de la vista
-#   @Comprueba para cada articulo, si la tiene la categoria desmarcada y si solo tiene esa categoria, lo quita
-#   de la lista de articulos a mostrar
+"""Metodo para actualizar los articulos dependiendo de las categoria marcadas en la vista:
+   Entrada: @peticion Ajax de la vista con los check marcados.
+   Comprueba para cada articulo, si tiene al menos una categoria de la lista, sino, lo quita
+   de la lista de articulos a mostrar
+   Salida: La lista de articulos a mostrar
+"""
 @requires_csrf_token
 def actualizar_articuloXcategoria(request):
 
-    #Compruebo si viene por el POST
-    if request.method == 'POST':
-        #Guardo la lista de categorias que envio el Ajax
-        categoria_marcada = request.POST.getlist('lista[]')
+
+    if request.method == 'POST':                                                            #Compruebo si la peticion es segura
+        categoria_marcada = request.POST.getlist('lista[]')                                 #Guardo la lista de categorias que enviò la peticiòn
         print(categoria_marcada)
 
 
-        todos_art = []  #Para almacenar los articulos que voy a mostrar
+        todos_art = []                                                                      #Para almacenar los articulos que voy a mostrar
         articulos_mostrar = list(Articulo.objects.all().prefetch_related('categorias'))
         print(articulos_mostrar)
 
@@ -64,7 +66,7 @@ def actualizar_articuloXcategoria(request):
     else:
         todos_art = Articulo.objects.all().values(Articulo.title, Articulo.autor)
 
-    html = render_to_string('list/render.html', {'articulos': todos_art})
+    html = render_to_string('list/render.html', {'articulos': todos_art})                   #Devuelvo un Html para la vista
     return HttpResponse(html)
 
 
@@ -82,48 +84,47 @@ def actualizar_articuloXtask(request):
 
 
 
-#Metodo auxiliar que busca si un articulo tiene una determinada categorìa
-# Entrada:@un articulo, @una categoria
-#Devuelve True si ese articulo tiene esa categoria, False en caso contrario
+"""Metodo auxiliar que busca si un articulo tiene una determinada categorìa
+    Entrada:@un articulo, @una categoria
+    Devuelve True si ese articulo tiene esa categoria, False en caso contrario"""
 def CateSerach(sarticulo, scategoria):
 
-    #buscar_categoria= Categoria(scategoria) #La categoria que voy a buscar en la lista que tiene el articulo
-    list_cat_art = list(sarticulo.categorias.all())     #Todas las categorias del articulo
+    list_cat_art = list(sarticulo.categorias.all())                 #Todas las categorias del articulo que viene como entrada
     print('CateSerach')
-    #Para cada categoria del articulo si es igual a la entrada
+                                                                    #Para cada categoria del articulo si es igual a la entrada
     for c in range(0,len(list_cat_art)):
         if(list_cat_art[c].categoria == scategoria):
           return True
     return False
 
 
-#Metodo auxiliar que busca si un articulo tiene una determinada tarea analitica
-# Entrada:@un articulo, @una tarea
-#Devuelve True si ese articulo tiene esa tarea, False en caso contrario
+"""Metodo auxiliar que busca si un articulo tiene una determinada tarea analitica
+    Entrada:@un articulo, @una tarea
+    Devuelve True si ese articulo tiene esa tarea, False en caso contrario"""
 def TaskSearch(sarticulo, stask):
 
-    busca_task = AnaliticTask(stask)    #La tarea que voy a buscar en el articulo
-    list_task_art = list(sarticulo.task.all())      #Lista de tareas del acrticulo
+    busca_task = AnaliticTask(stask)                    #La tarea que voy a buscar en el articulo
+    list_task_art = list(sarticulo.task.all())          #Lista de tareas del acrticulo
 
-    #Para cada tarea del articulo si es igual a la entrada
-    for t in list_task_art:
+    for t in list_task_art:                             #Busca la tarea de la entrada en cada una de las que tiene el articulo
         if t== busca_task:
             return True
     return False
 
 
-#Metodo para busca articulos, dando una frase
-#Entrada:@ texto
-#Devuelve: @Lista de articulos que contienen el texto en el Titulo, Autor o Resumen
+"""Metodo para busca articulos, dando una frase
+Entrada:@texto
+Devuelve: @Lista de articulos que contienen el texto en el Titulo, Autor o Resumen"""
 def Search(request):
 
-    string = request.POST   #El texto que tengo que buscar
+    texto = request.POST                                                        #El texto que tengo que buscar
 
-    #Consulta para buscar por el titulo, autor y Resumen
-    articles_names = Articulo.objects.filter(Q(title_contains=string) | Q(autor_contains=string | Q(text_contains=string)))
+    articles_names = Articulo.objects.filter(Q(title_contains=texto) |          #Consulta para buscar por el titulo, autor y Resumen
+                                             Q(autor_contains=texto |
+                                             Q(text_contains=texto)))
 
     html = render_to_string('list/render.html', {'articulos': articles_names})
-    return HttpResponse(html)
+    return HttpResponse(html)                                                   #Devuelve el HTML con los articulos
 
 
 
