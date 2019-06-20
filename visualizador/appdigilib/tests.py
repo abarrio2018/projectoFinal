@@ -7,10 +7,11 @@ from django.test import TestCase
 """
 # Create your tests here.
 import unittest
-from appdigilib import views
+from appdigilib.views import CateSerach
 
 
-class Test(unittest.TestCase):
+class Test_Articles(unittest.TestCase):
+
     def test(self):
         raise AssertionError()
 
@@ -27,7 +28,7 @@ class Test(unittest.TestCase):
              del(self.numeros)
     """
 
-    def Test_Search_Category_in_Article(self):
+    def Test_Search_False_of_Category_in_Article(self):
         # input
         article = ['Sandeep Reddivari, Zhangji Chen, Nan Niu',
                    'ReCVisu: A tool for clustering-based visual exploration of requirements',
@@ -40,7 +41,7 @@ class Test(unittest.TestCase):
         result= CateSerach(article, categorys)
 
         #assert
-        self.assertEqual(result, False)
+        self.assertFalse(result)
 
 
 
