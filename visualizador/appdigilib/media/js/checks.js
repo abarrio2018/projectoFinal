@@ -1,12 +1,10 @@
 $(document).ready(function() {
 
     $('.check_cat').change(function() {
-        alert("Hola, no tienes error");
         ajax_post_categorias();
     });
 
     $('.check_task').change(function() {
-        alert("Hola, no tienes error");
         ajax_post_tareas();
     });
 

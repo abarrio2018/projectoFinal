@@ -21,10 +21,18 @@ from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 @requires_csrf_token
 def listado(request):
 
+    #se method e' post e' porque e' chamado da busqueda
+    if request.method == 'POST':
+        string_search = request.POST.get('search')   #El texto que tengo que buscar
+        #Consulta para buscar por el titulo, autor y Resumen
+        # da error con esta busqueda... | Q(text__contains=string_search) ....debe ser por el tipo de dato en models
+        articulos = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search ))
+    else:
+                         #Extrae las imagenes de los articulos
+        articulos = Articulo.objects.all().order_by('published_date')       #Extrae los articulos
     categorias = Categoria.objects.all()                                #Extrae todas las cateorias insertadas
-    tareas = AnaliticTask.objects.all()                                 #Extrae todas las tareas analiticas insertadas
-    imagenes = Image.objects.all().order_by('articulo')                 #Extrae las imagenes de los articulos
-    articulos = Articulo.objects.all().order_by('published_date')       #Extrae los articulos
+    tareas = AnaliticTask.objects.all()                                 #EXtrae todas las tareas analiticas insertadas
+    imagenes = Image.objects.all().order_by('articulo')
 
     return render(request, 'list/index_list.html',
                   {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
@@ -66,7 +74,7 @@ def actualizar_articuloXcategoria(request):
     else:
         todos_art = Articulo.objects.all().values(Articulo.title, Articulo.autor)
 
-    html = render_to_string('list/render.html', {'articulos': todos_art})                   #Devuelvo un Html para la vista
+    html = render_to_string('list/render.html', {'articulos': todos_art})
     return HttpResponse(html)
 
 
@@ -89,6 +97,9 @@ def actualizar_articuloXtask(request):
     Devuelve True si ese articulo tiene esa categoria, False en caso contrario"""
 def CateSerach(sarticulo, scategoria):
 
+    #buscar_categoria= Categoria(scategoria) #La categoria que voy a buscar en la lista que tiene el articulo
+    list_cat_art = list(sarticulo.categorias.all())     #Todas las categorias del articulo
+    #Para cada categoria del articulo si es igual a la entrada
     list_cat_art = list(sarticulo.categorias.all())                 #Todas las categorias del articulo que viene como entrada
     print('CateSerach')
                                                                     #Para cada categoria del articulo si es igual a la entrada
@@ -122,9 +133,17 @@ def Search(request):
     articles_names = Articulo.objects.filter(Q(title_contains=texto) |          #Consulta para buscar por el titulo, autor y Resumen
                                              Q(autor_contains=texto |
                                              Q(text_contains=texto)))
+    string_search = request.POST.get('search')   #El texto que tengo que buscar
+    print(string_search)
+    #Consulta para buscar por el titulo, autor y Resumen
+    # da error con esta busqueda... | Q(text__contains=string_search) ....debe ser por el tipo de dato en models
+    articles_names = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search ))
 
     html = render_to_string('list/render.html', {'articulos': articles_names})
     return HttpResponse(html)                                                   #Devuelve el HTML con los articulos
+    #html = render_to_string('list/render.html', {'articulos': articles_names})
+    #return HttpResponse(html)
+    return listado(request, articles_names)
 
 
 
