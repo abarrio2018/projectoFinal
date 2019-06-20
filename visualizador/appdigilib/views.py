@@ -119,7 +119,7 @@ def TaskSearch(sarticulo, stask):
 
     list_task_art = list(sarticulo.tasks.all())                         #Lista de tareas del acrticulo de entrada
     print(list_task_art)
-    for t in range(0,len(list_task_art)):                             #Busca la tarea de la entrada en cada una de las que tiene el articulo
+    for t in range(0,len(list_task_art)):                               #Busca la tarea de la entrada en cada una de las que tiene el articulo
         print(list_task_art[t])
         if(list_task_art[t].task == stask):
             return True
