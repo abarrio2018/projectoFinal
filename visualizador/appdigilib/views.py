@@ -21,22 +21,19 @@ from appdigilib.forms import ArticleForm, CategoriaForm, AnaliticTaskForm
 @requires_csrf_token
 def listado(request):
 
-    #se method e' post e' porque e' chamado da busqueda
-    if request.method == 'POST':
-        string_search = request.POST.get('search')   #El texto que tengo que buscar
+    if request.method == 'POST':                                                #Comprueba si el metodo el POST, viene de la busqueda
+        string_search = request.POST.get('search')                              #El texto que tengo que buscar
+
         #Consulta para buscar por el titulo, autor y Resumen
-        # da error con esta busqueda... | Q(text__contains=string_search) ....debe ser por el tipo de dato en models
         articulos = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search ))
     else:
-                         #Extrae las imagenes de los articulos
-        articulos = Articulo.objects.all().order_by('published_date')       #Extrae los articulos
-    categorias = Categoria.objects.all()                                #Extrae todas las cateorias insertadas
-    tareas = AnaliticTask.objects.all()                                 #EXtrae todas las tareas analiticas insertadas
-    imagenes = Image.objects.all().order_by('articulo')
+        articulos = Articulo.objects.all().order_by('published_date')           #Extrae todos los articulos
+    categorias = Categoria.objects.all()                                        #Extrae todas las cateorias insertadas
+    tareas = AnaliticTask.objects.all()                                         #EXtrae todas las tareas analiticas insertadas
+    imagenes = Image.objects.all().order_by('articulo')                         #Extrae las imagenes de los articulos
 
     return render(request, 'list/index_list.html',
                   {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
-
 
 
 """Metodo para actualizar los articulos dependiendo de las categoria marcadas en la vista:
@@ -48,29 +45,19 @@ def listado(request):
 @requires_csrf_token
 def actualizar_articuloXcategoria(request):
 
-
     if request.method == 'POST':                                                            #Compruebo si la peticion es segura
         categoria_marcada = request.POST.getlist('lista[]')                                 #Guardo la lista de categorias que enviò la peticiòn
-        print(categoria_marcada)
-
 
         todos_art = []                                                                      #Para almacenar los articulos que voy a mostrar
         articulos_mostrar = list(Articulo.objects.all().prefetch_related('categorias'))
-        print(articulos_mostrar)
 
         #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @todos_art
         for x in range(0,len(articulos_mostrar)):
-
-            cont = 0
             for y in range(0,len(categoria_marcada)):
-                print(categoria_marcada[y])
-                if( CateSerach(articulos_mostrar[x], categoria_marcada[y])):
-                    todos_art.append(articulos_mostrar[x])
-                    print('catesearch true')
-            #if cont != 0:
-            #    todos_art.append(articulos_mostrar[x])
-            print(cont)
 
+                if( CateSerach(articulos_mostrar[x], categoria_marcada[y])):                #Metodo auxiliar que dice si una categoria esta en un articulo
+                    todos_art.append(articulos_mostrar[x])
+                    break
     else:
         todos_art = Articulo.objects.all().values(Articulo.title, Articulo.autor)
 
@@ -79,16 +66,36 @@ def actualizar_articuloXcategoria(request):
 
 
 
+"""Metodo para actualizar los articulos dependiendo de las tareas analiticas marcadas en la vista:
+   Entrada: @peticion Ajax de la vista con los check marcados.
+   Comprueba para cada articulo, si tiene al menos una tarea analitica de la lista, sino, lo quita
+   de la lista de articulos a mostrar
+   Salida: La lista de articulos a mostrar
+"""
 @requires_csrf_token
 def actualizar_articuloXtask(request):
 
-    categorias = Categoria.objects.all()
-    tareas = AnaliticTask.objects.all()
-    articulos = Articulo.objects.all().order_by('image__articulo__published_date')
-    imagenes = Image.objects.all().order_by('articulo')
+    if request.method == 'POST':                                                            #Compruebo si la peticion es segura
+        task_marcada = request.POST.getlist('lista[]')                                      #Guardo la lista de tareas que enviò la peticiòn
 
-    return render(request, 'list/index_list.html',
-                {'articulos': articulos, 'categorias': categorias, 'tareas': tareas, 'imagenes': imagenes})
+        todos_art = []                                                                      #Para almacenar los articulos que voy a mostrar
+        articulos_mostrar = list(Articulo.objects.all().prefetch_related('tasks'))          #Total de articulos actuales
+        print(articulos_mostrar)
+
+        #Para cada articulo compruebo si tiene al menos una tarea marcada, lo adiciono en @todos_art
+        for x in range(0,len(articulos_mostrar)):
+            for y in range(0,len(task_marcada)):
+
+                print(task_marcada[y])
+                if( TaskSearch(articulos_mostrar[x], task_marcada[y])):                     #Metodo auxiliar que dice si una categoria esta en un articulo
+                    todos_art.append(articulos_mostrar[x])
+                    print(todos_art)
+                    break
+    else:
+        todos_art = Articulo.objects.all().values(Articulo.title, Articulo.autor)
+
+    html = render_to_string('list/render.html', {'articulos': todos_art})
+    return HttpResponse(html)
 
 
 
@@ -97,13 +104,9 @@ def actualizar_articuloXtask(request):
     Devuelve True si ese articulo tiene esa categoria, False en caso contrario"""
 def CateSerach(sarticulo, scategoria):
 
-    #buscar_categoria= Categoria(scategoria) #La categoria que voy a buscar en la lista que tiene el articulo
-    list_cat_art = list(sarticulo.categorias.all())     #Todas las categorias del articulo
-    #Para cada categoria del articulo si es igual a la entrada
     list_cat_art = list(sarticulo.categorias.all())                 #Todas las categorias del articulo que viene como entrada
-    print('CateSerach')
-                                                                    #Para cada categoria del articulo si es igual a la entrada
-    for c in range(0,len(list_cat_art)):
+
+    for c in range(0,len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la entrada
         if(list_cat_art[c].categoria == scategoria):
           return True
     return False
@@ -114,11 +117,11 @@ def CateSerach(sarticulo, scategoria):
     Devuelve True si ese articulo tiene esa tarea, False en caso contrario"""
 def TaskSearch(sarticulo, stask):
 
-    busca_task = AnaliticTask(stask)                    #La tarea que voy a buscar en el articulo
-    list_task_art = list(sarticulo.task.all())          #Lista de tareas del acrticulo
-
-    for t in list_task_art:                             #Busca la tarea de la entrada en cada una de las que tiene el articulo
-        if t== busca_task:
+    list_task_art = list(sarticulo.tasks.all())                         #Lista de tareas del acrticulo de entrada
+    print(list_task_art)
+    for t in range(0,len(list_task_art)):                             #Busca la tarea de la entrada en cada una de las que tiene el articulo
+        print(list_task_art[t])
+        if(list_task_art[t].task == stask):
             return True
     return False
 

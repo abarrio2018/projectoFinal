@@ -32,9 +32,11 @@ async function ajax_post_tareas(){
      var lista_task = [];
         $( '.check_task' ).each(function( index ) {
             if(this.checked) {
+                lista_task.push($(this).attr('name'));
+                alert(lista_task);
             }
             else{
-                lista_task.push($(this).attr('name'));
+
             }
         });
         //var csrf;
@@ -44,10 +46,10 @@ async function ajax_post_tareas(){
           xhr.setRequestHeader("X-CSRFToken", csrftoken);
           },
             type:'POST',
-            url:'index/c1',
+            url:'index/c2',
             dataType: 'html',
             data: {
-              'lista': [lista_task],
+              'lista': lista_task,
               },
             success: function(json){
               $('#content1').html(json);
@@ -60,7 +62,6 @@ async function ajax_post_tareas(){
     };
 
 async function ajax_post_categorias() {
-    var lista_cat_des = [];
     var list_marcados = [];
 
         $( '.check_cat' ).each(function( index ) {
@@ -69,7 +70,7 @@ async function ajax_post_categorias() {
 
             }
             else{
-                lista_cat_des.push($(this).attr('name'));
+                //lista_cat_des.push($(this).attr('name'));
 
             }
         });
