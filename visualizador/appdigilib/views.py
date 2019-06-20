@@ -106,7 +106,7 @@ def CateSerach(sarticulo, scategoria):
 
     list_cat_art = list(sarticulo.categorias.all())                 #Todas las categorias del articulo que viene como entrada
 
-    for c in range(0,len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la entrada
+    for c in range(0,len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la categoria entrada
         if(list_cat_art[c].categoria == scategoria):
           return True
     return False
