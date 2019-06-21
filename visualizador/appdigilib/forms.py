@@ -1,35 +1,35 @@
 from django import forms
-from .models import Articulo, Categoria, AnaliticTask, Image
+from .models import Article, Category, AnaliticTask, Image
 
 
 class ArticleForm(forms.ModelForm):
     class Meta:
-       model = Articulo
-       fields = ['title', 'categorias', 'tasks', 'doi', 'autor', 'published_date', 'text',]
+       model = Article
+       fields = ['title', 'categories', 'tasks', 'doi', 'author', 'published_date', 'text',]
        labels = {
            'title': 'Tìtulo',
-           'categorias':'Categoría',
+           'categories':'Categoría',
            'tasks':'Tarefa analìtica' ,
            'doi':'DOI',
-           'autor': 'Ator',
+           'author': 'Ator',
            'published_date': 'Data de publicação',
            'text': 'Texto'
        }
        widgets = {
            'title': forms.TextInput,
-           'categoria':forms.Select,
+           'category':forms.Select,
            'task':forms.Select,
            'doi':forms.TextInput,
-           'autor':forms.TextInput,
+           'author':forms.TextInput,
            'published_date':forms.TextInput,
            'text': forms.TextInput,
        }
 
-class CategoriaForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
-        model = Categoria
-        fields = ('categoria',)
-        widgets = {'categoria': forms.Select,}
+        model = Category
+        fields = ('category',)
+        widgets = {'category': forms.Select,}
 
 class AnaliticTaskForm(forms.ModelForm):
     class Meta:

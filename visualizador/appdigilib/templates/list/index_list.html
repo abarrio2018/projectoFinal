@@ -1,15 +1,15 @@
 {% extends "list/index.html" %}
 
 {% block content %}
-    {% if articulos %}
-        {% for articulo in articulos %}
+    {% if articles %}
+        {% for article in articles %}
             <div class="col-md-4" >
                 <div class="panel panel-primary" data-target="#Modal">
-                    <div class="panel-heading" onclick="ShowModal()">{{ articulo.title}}</div>
-                    <div> {{ articulo.autor}}</div>
+                    <div class="panel-heading" onclick="ShowModal()">{{ article.title}}</div>
+                    <div> {{ article.autor}}</div>
 
-                    <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{articulo.image.image.url}}"></div>
-                    <div class="panel-footer">{{ articulo.published_date}}</div>
+                    <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{article.image.image.url}}"></div>
+                    <div class="panel-footer">{{ article.published_date}}</div>
                 </div>
                 </a>
             </div>

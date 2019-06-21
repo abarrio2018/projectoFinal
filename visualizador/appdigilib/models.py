@@ -6,11 +6,11 @@ from datetime import date
 # Create your models here.
 
 
-class Categoria(models.Model):
-    categoria = models.CharField(max_length=250)
+class Category(models.Model):
+    category = models.CharField(max_length=250)
 
     def __str__(self):
-       return self.categoria
+       return self.category
 
 
 class AnaliticTask(models.Model):
@@ -27,34 +27,35 @@ class Image(models.Model):
         return str(self.image)
 
 
-class Articulo(models.Model):
-    autor = models.CharField(max_length=200)
+class Article(models.Model):
+    author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     doi = models.CharField(max_length=250)
     text = models.TextField()
     published_date = models.DateField()
-    categorias = models.ManyToManyField(Categoria, through = 'Articulo_Categoria')
-    tasks = models.ManyToManyField(AnaliticTask, through ='Articulo_Task')
+    categories = models.ManyToManyField('Category')
+    tasks = models.ManyToManyField('AnaliticTask')
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
 
     def only_year(self):
         return self.timestamp.strftime('%Y')
 
-    def StrArticulo(self):
-        cadena = "{1},{0}"
-        return cadena.format(self.title, self.autor)
+    def StrArticle(self):
+        string = "{1},{0}"
+        return string.format(self.title, self.author)
 
     def __str__(self):
-        return self.StrArticulo()
+        return self.StrArticle()
+
+"""
+class Article_Category(models.Model):
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    article = models.ForeignKey('Article', on_delete=models.CASCADE)
+    active = models.BooleanField()
 
 
-class Articulo_Categoria(models.Model):
-    categoria = models.ForeignKey('Categoria', on_delete=models.CASCADE)
-    articulo = models.ForeignKey('Articulo', on_delete=models.CASCADE)
-    activo = models.BooleanField()
-
-
-class Articulo_Task(models.Model):
+class Article_Task(models.Model):
     task = models.ForeignKey('AnaliticTask', on_delete=models.CASCADE)
-    articulo = models.ForeignKey('Articulo', on_delete=models.CASCADE)
+    article = models.ForeignKey('Article', on_delete=models.CASCADE)
     activo = models.BooleanField()
+"""

@@ -54,24 +54,24 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item">Task Analitic</li>
-                        {% if tareas %}
-                            {% for tarea in tareas %}
+                        {% if tasks %}
+                            {% for task in tasks %}
 
                                 <label>
-                                    <input class="check_task" type="checkbox" name="{{tarea.task}}" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{tarea.task}}" checked>
-                                    {{tarea.task}}
+                                    <input class="check_task" type="checkbox" name="{{task.task}}" aria-label="Checkbox for following text input" aria-valuetext="Source" id="{{task.task}}" checked>
+                                    {{task.task}}
                                 </label>
 
                             {% endfor %}
                         {% else %}
                             <h1>There are not task to show</h1>
                         {% endif %}
-                    <li class="list-group-item">Categorias</li>
-                        {% if categorias %}
-                            {% for categoria in categorias %}
+                    <li class="list-group-item">Categories</li>
+                        {% if categories %}
+                            {% for category in categories %}
                                 <label>
-                                   <input class="check_cat" type="checkbox" name="{{categoria.categoria}}" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{categoria.categoria}}">
-                                   {{categoria.categoria}}
+                                   <input class="check_cat" type="checkbox" name="{{category.category}}" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{category.category}}">
+                                   {{category.category}}
                                 </label>
                             {% endfor%}
                         {% else %}

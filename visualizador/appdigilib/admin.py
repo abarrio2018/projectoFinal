@@ -1,11 +1,9 @@
 from django.contrib import admin
-from .models import Articulo, Categoria, AnaliticTask, Image, Articulo_Categoria, Articulo_Task
+from .models import Article, Category, AnaliticTask, Image
 # Register your models here.
 
 
-admin.site.register(Articulo)
-admin.site.register(Categoria)
+admin.site.register(Article)
+admin.site.register(Category)
 admin.site.register(AnaliticTask)
-admin.site.register(Articulo_Categoria)
-admin.site.register(Articulo_Task)
 admin.site.register(Image)
