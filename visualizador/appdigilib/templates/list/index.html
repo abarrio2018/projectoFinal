@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+
     <!--My personalizaded CSS-->
     <!--<link rel="stylesheet" href="{% static 'css/style1.css' %}">-->
     <!-- Librería jQuery requerida por los plugins de JavaScript-->
@@ -23,6 +25,16 @@
 
 </head>
 <body>
+        <!--Boostrap Modal-->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- You can alternatively load the minified version -->
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
+        {% include "list/modal.html" %}
+
     <!--Menu superior-->
     <div class="jumbotron">
         <div class="container text-center">
@@ -30,8 +42,11 @@
              <p>A Visual Survey of Text Mining Visualization for Requirement Engineering</p>
 
         </div>
-        <!--<a type="" href="{% url 'nova_img' %}">Imagen</a>-->
+        <!--<a type="" href="{% url 'nova_img' %}">Imagen</a>  data-toggle="modal" data-target="#Modal"-->
+        <button class="btn btn-primary" id="btn-modal" onclick="ShowModal()">Exibir mensagem</button>
     </div>
+
+
 <!--Paper' s menu-->
     <div class="container">
         <div class="col-md-3">
@@ -84,6 +99,7 @@
             </div>
         </div>
     </div><br>
+
 
 </body>
 

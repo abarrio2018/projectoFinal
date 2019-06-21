@@ -1,5 +1,6 @@
 from django import forms
-from .models import Articulo, Categoria, AnaliticTask, Image, Articulo_Task, Articulo_Categoria
+from .models import Articulo, Categoria, AnaliticTask, Image
+
 
 class ArticleForm(forms.ModelForm):
     class Meta:

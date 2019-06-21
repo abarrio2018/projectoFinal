@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
-import urllib3
 import json as JSON
 from django.template.loader import render_to_string
 from django.views.generic import ListView
@@ -25,7 +23,7 @@ def listado(request):
         string_search = request.POST.get('search')                              #El texto que tengo que buscar
 
         #Consulta para buscar por el titulo, autor y Resumen
-        articulos = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search ))
+        articulos = Articulo.objects.filter(Q(title__contains = string_search) | Q(autor__contains = string_search))
     else:
         articulos = Articulo.objects.all().order_by('published_date')           #Extrae todos los articulos
     categorias = Categoria.objects.all()                                        #Extrae todas las cateorias insertadas
@@ -52,10 +50,10 @@ def actualizar_articuloXcategoria(request):
         articulos_mostrar = list(Articulo.objects.all().prefetch_related('categorias'))
 
         #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @todos_art
-        for x in range(0,len(articulos_mostrar)):
-            for y in range(0,len(categoria_marcada)):
+        for x in range(0, len(articulos_mostrar)):
+            for y in range(0, len(categoria_marcada)):
 
-                if( CateSerach(articulos_mostrar[x], categoria_marcada[y])):                #Metodo auxiliar que dice si una categoria esta en un articulo
+                if CateSerach(articulos_mostrar[x], categoria_marcada[y]):                #Metodo auxiliar que dice si una categoria esta en un articulo
                     todos_art.append(articulos_mostrar[x])
                     break
     else:
@@ -63,7 +61,6 @@ def actualizar_articuloXcategoria(request):
 
     html = render_to_string('list/render.html', {'articulos': todos_art})
     return HttpResponse(html)
-
 
 
 """Metodo para actualizar los articulos dependiendo de las tareas analiticas marcadas en la vista:
@@ -83,11 +80,11 @@ def actualizar_articuloXtask(request):
         print(articulos_mostrar)
 
         #Para cada articulo compruebo si tiene al menos una tarea marcada, lo adiciono en @todos_art
-        for x in range(0,len(articulos_mostrar)):
-            for y in range(0,len(task_marcada)):
+        for x in range(0, len(articulos_mostrar)):
+            for y in range(0, len(task_marcada)):
 
                 print(task_marcada[y])
-                if( TaskSearch(articulos_mostrar[x], task_marcada[y])):                     #Metodo auxiliar que dice si una categoria esta en un articulo
+                if TaskSearch(articulos_mostrar[x], task_marcada[y]):                     #Metodo auxiliar que dice si una categoria esta en un articulo
                     todos_art.append(articulos_mostrar[x])
                     print(todos_art)
                     break
@@ -98,7 +95,6 @@ def actualizar_articuloXtask(request):
     return HttpResponse(html)
 
 
-
 """Metodo auxiliar que busca si un articulo tiene una determinada categorìa
     Entrada:@un articulo, @una categoria
     Devuelve True si ese articulo tiene esa categoria, False en caso contrario"""
@@ -106,8 +102,8 @@ def CateSerach(sarticulo, scategoria):
 
     list_cat_art = list(sarticulo.categorias.all())                 #Todas las categorias del articulo que viene como entrada
 
-    for c in range(0,len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la categoria entrada
-        if(list_cat_art[c].categoria == scategoria):
+    for c in range(0, len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la categoria entrada
+        if list_cat_art[c].categoria == scategoria:
           return True
     return False
 
@@ -115,20 +111,25 @@ def CateSerach(sarticulo, scategoria):
 """Metodo auxiliar que busca si un articulo tiene una determinada tarea analitica
     Entrada:@un articulo, @una tarea
     Devuelve True si ese articulo tiene esa tarea, False en caso contrario"""
+
+
 def TaskSearch(sarticulo, stask):
 
     list_task_art = list(sarticulo.tasks.all())                         #Lista de tareas del acrticulo de entrada
     print(list_task_art)
     for t in range(0,len(list_task_art)):                               #Busca la tarea de la entrada en cada una de las que tiene el articulo
         print(list_task_art[t])
-        if(list_task_art[t].task == stask):
+        if list_task_art[t].task == stask:
             return True
     return False
 
 
 """Metodo para busca articulos, dando una frase
-Entrada:@texto
-Devuelve: @Lista de articulos que contienen el texto en el Titulo, Autor o Resumen"""
+    Entrada:@texto
+    Devuelve: @Lista de articulos que contienen el texto en el Titulo, Autor o Resumen
+"""
+
+
 def Search(request):
 
     texto = request.POST                                                        #El texto que tengo que buscar
@@ -140,34 +141,14 @@ def Search(request):
     print(string_search)
     #Consulta para buscar por el titulo, autor y Resumen
     # da error con esta busqueda... | Q(text__contains=string_search) ....debe ser por el tipo de dato en models
-    articles_names = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search ))
+    articles_names = Articulo.objects.filter(Q(title__contains=string_search) | Q(autor__contains=string_search))
 
     html = render_to_string('list/render.html', {'articulos': articles_names})
     return HttpResponse(html)                                                   #Devuelve el HTML con los articulos
-    #html = render_to_string('list/render.html', {'articulos': articles_names})
-    #return HttpResponse(html)
-    return listado(request, articles_names)
 
+"""
+"""
 
-
-
-
-#Insertar con formulario
-class Article():
-
-    def AdicionarArticulo(request):
-        if request.method == 'post':
-            form = ArticleForm(request.POST)
-
-            if form.is_valid():
-                form.save(commit=True)
-                return redirect('add_article', pk=post.pk)
-        else:
-            form = ArticleForm
-        return render(request, 'list/article.html', {'form': form})
-
-
-#Insertar con formulario
 def AdicionarImagen(request):
     categorias = Categoria.objects.all()
     tareas = AnaliticTask.objects.all()
@@ -183,6 +164,9 @@ def AdicionarImagen(request):
     else:
         form = ImagenForm
     return render(request, 'list/article.html', {'form': form, 'categorias': categorias, 'tareas': tareas})
+
+
+
 
 
 def error(request):

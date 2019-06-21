@@ -1,12 +1,26 @@
 $(document).ready(function() {
 
+
     $('.check_cat').change(function() {
         ajax_post_categorias();
     });
 
+
     $('.check_task').change(function() {
         ajax_post_tareas();
     });
+
+
+    $("#btn-modal").click(function(){
+        alert("estoy dentro");
+        $("#Modal").modal();
+    });
+
+
+    $('#Modal').on('shown.bs.modal', function () {
+        $('#Modal').trigger('focus')
+    });
+
 
 function getCookie(name) {
 
@@ -26,6 +40,11 @@ function getCookie(name) {
     }
 
     return cookieValue;
+};
+
+function ShowModal(){
+    alert("estoy dentro");
+    $("#Modal").modal();
 };
 
 async function ajax_post_tareas(){

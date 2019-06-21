@@ -25,7 +25,7 @@ SECRET_KEY = '^ussun*o7v=hh@4p9m2(dmjc-n)p%mv6!3!#21r$x8n-0y2k0j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #local
     'appdigilib',
+    #third parties
+    'bootstrap_modal_forms',
 
 ]
 

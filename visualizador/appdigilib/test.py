@@ -12,9 +12,6 @@ from appdigilib.views import CateSerach
 
 class Test_Articles(unittest.TestCase):
 
-    def test(self):
-        raise AssertionError()
-
     """def setUp(self):
         print("Preparando el contexto")
         categorys = ['Ranking', 'Flow']
@@ -38,11 +35,10 @@ class Test_Articles(unittest.TestCase):
         categorys = 'Ranking'
 
         #act
-        result= CateSerach(article, categorys)
+        result = CateSerach(article, categorys)
 
         #assert
         self.assertFalse(result)
-
 
 
 if __name__ == "__main__":
