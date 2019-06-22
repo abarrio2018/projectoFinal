@@ -14,7 +14,7 @@
     <!--My personalizaded CSS-->
     <!--<link rel="stylesheet" href="{% static 'css/style1.css' %}">-->
     <!-- Librería jQuery requerida por los plugins de JavaScript-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
@@ -35,11 +35,6 @@
 
         </div>
         <!--<a type="" href="{% url 'nova_img' %}">Imagen</a>  data-toggle="modal" data-target="#Modal"-->
-        <button class="btn btn-primary" id="btn-modal" onclick="ShowModal()">Exibir mensagem</button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true"></div>
-        <!-- /.modal -->
     </div>
 
 
@@ -95,6 +90,30 @@
             </div>
         </div>
     </div><br>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Details of the paper</h4>
+      </div>
+      <div class="modal-body">
+          {{ id_content.title}}
+          <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{articulo.image.image.url}}"></div>
+          {{ articulo.autor}}
+          {{ articulo.doi }}
+          {{ articulo.published_date}}
+          {{ articulo.categoria }}
+          {{ articulo.task }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </body>

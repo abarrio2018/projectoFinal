@@ -26,12 +26,12 @@ def List(request):
         articles = Article.objects.filter(Q(title__contains = string_search) | Q(author__contains = string_search))
     else:
         articles = Article.objects.all().order_by('published_date')             #Extrae todos los articulos
-    categorys = Category.objects.all()                                          #Extrae todas las cateorias insertadas
+    categories = Category.objects.all()                                          #Extrae todas las cateorias insertadas
     tasks = AnaliticTask.objects.all()                                         #EXtrae todas las tareas analiticas insertadas
     images = Image.objects.all().order_by('article')                          #Extrae las imagenes de los articulos
 
     return render(request, 'list/index_list.html',
-                  {'articles': articles, 'categorys': categorys, 'tasks': tasks, 'images': images})
+                  {'articles': articles, 'categories': categories, 'tasks': tasks, 'images': images})
 
 
 """Metodo para actualizar los articulos dependiendo de las categoria marcadas en la vista:
@@ -47,7 +47,7 @@ def Update_ArticleXCategory(request):
         check_category = request.POST.getlist('lista[]')                                 #Guardo la lista de categorias que enviò la peticiòn
 
         all_articles = []                                                                      #Para almacenar los articulos que voy a mostrar
-        articles_mostrar = list(Article.objects.all().prefetch_related('categorys'))
+        articles_mostrar = list(Article.objects.all().prefetch_related('categories'))
 
         #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @all_articles
         for x in range(0, len(articles_mostrar)):
@@ -75,8 +75,8 @@ def Update_ArticleXTask(request):
     if request.method == 'POST':                                                            #Compruebo si la peticion es segura
         task_marcada = request.POST.getlist('lista[]')                                      #Guardo la lista de tareas que enviò la peticiòn
 
-        all_articles = []                                                                      #Para almacenar los articulos que voy a mostrar
-        articles_mostrar = list(Article.objects.all().prefetch_related('tasks'))          #Total de articulos actuales
+        all_articles = []                                                                   #Para almacenar los articulos que voy a mostrar
+        articles_mostrar = list(Article.objects.all().prefetch_related('tasks'))            #Total de articulos actuales
         print(articles_mostrar)
 
         #Para cada articulo compruebo si tiene al menos una tarea marcada, lo adiciono en @all_articles
@@ -100,7 +100,7 @@ def Update_ArticleXTask(request):
     Devuelve True si ese articulo tiene esa categoria, False en caso contrario"""
 def Serach_Category(sarticle, scategory):
 
-    list_cat_art = list(sarticle.categorys.all())                 #Todas las categorias del articulo que viene como entrada
+    list_cat_art = list(sarticle.categories.all())                 #Todas las categorias del articulo que viene como entrada
 
     for c in range(0, len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la categoria entrada
         if list_cat_art[c].category == scategory:
@@ -115,7 +115,7 @@ def Serach_Category(sarticle, scategory):
 
 def Search_Task(sArticle, stask):
 
-    list_task_art = list(sArticle.tasks.all())                         #Lista de tareas del acrticulo de entrada
+    list_task_art = list(sArticle.tasks.all())                          #Lista de tareas del acrticulo de entrada
     print(list_task_art)
     for t in range(0,len(list_task_art)):                               #Busca la tarea de la entrada en cada una de las que tiene el articulo
         print(list_task_art[t])
@@ -165,4 +165,4 @@ def Add_Image(request):
 
 
 def error(request):
-    return HttpResponse("Algo deu errado")
+    return HttpResponse("Algo deu errado.")

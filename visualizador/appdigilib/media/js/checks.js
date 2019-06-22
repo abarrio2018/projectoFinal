@@ -13,7 +13,8 @@ $(document).ready(function() {
 
     $("#btn-modal").click(function(){
         alert("estoy dentro");
-        $("#Modal").modal();
+        $("#Modal").modal('show');
+
     });
 
 
@@ -21,6 +22,10 @@ $(document).ready(function() {
         $('#Modal').trigger('focus')
     });
 
+function ShowModal () {
+    alert("estoy dentro");
+
+}ñ
 
 function getCookie(name) {
 
@@ -42,17 +47,11 @@ function getCookie(name) {
     return cookieValue;
 };
 
-function ShowModal(){
-    alert("estoy dentro");
-    $("#Modal").modal();
-};
-
 async function ajax_post_tareas(){
      var lista_task = [];
         $( '.check_task' ).each(function( index ) {
             if(this.checked) {
                 lista_task.push($(this).attr('name'));
-                alert(lista_task);
             }
             else{
 

@@ -3,9 +3,9 @@
 {% block content %}
     {% if articles %}
         {% for article in articles %}
-            <div class="col-md-4" >
+            <div class="col-md-4" onclick="ShowModal()">
                 <div class="panel panel-primary" data-target="#Modal">
-                    <div class="panel-heading" onclick="ShowModal()">{{ article.title}}</div>
+                    <div class="panel-heading" data-toggle="modal" data-target="#Modal" id="id_content">{{ article.title}}</div>
                     <div> {{ article.autor}}</div>
 
                     <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{article.image.image.url}}"></div>
