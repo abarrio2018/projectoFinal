@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     #local
     'appdigilib',
     #third parties
-    'bootstrap_modal_forms',
+    #'bootstrap_modal_forms',
 
 ]
 
