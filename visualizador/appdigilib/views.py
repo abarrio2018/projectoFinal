@@ -158,12 +158,14 @@ def Details(request):
         article = Article.objects.filter(pk = id)
 
         date_article = Article.objects.get(pk = id)
-        categories = date_article.categories.all()
+        categories = date_article.categories.all().only('category')
+        categories = list(categories.values('category'))
         task = date_article.tasks.all().only('task')
+        task = list(task.values('task'))
 
-        title = date_article.title
         print(task)
 
+        title = date_article.title
         author = date_article.author
         #print(author)
         #year = article.published_date
@@ -171,22 +173,16 @@ def Details(request):
         #doi = article.doi
         #print(doi)
 
+    #categories = serializers.serialize("json", categories)
+    #task = serializers.serialize("json", task)
+    #article = serializers.serialize("json", article)
 
-    #response = JsonResponse({serialize('json', date),})    #response =serializers.serialize("json", date)  #response = serialize('json', date)
-    categories = serializers.serialize("json", categories)
-    task = serializers.serialize("json", task)
-    article = serializers.serialize("json", article)
-    #print(categories)
-
-    #task = serializers.serialize("json", task, fields=('task',))
-    print(article)
-
-    response = {'title': title, 'author': author, 'categories': categories, 'task': task }
+    response = {'task': task, 'categories': categories, 'title': title, 'author':author}
     print(response)
 
-    some_data = simplejson.dumps(response)
-    return HttpResponse(some_data, 'application/json')
-    #return JsonResponse(response, safe=False)
+    #some_data = simplejson.dumps(response)
+    #return HttpResponse(some_data, 'application/json')
+    return JsonResponse(response, safe=False)
 
 
 

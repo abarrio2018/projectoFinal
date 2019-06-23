@@ -38,17 +38,14 @@ $(document).ready(function() {
                 alert(task);
 
                 //var article = response.article;
-                //var field = task["fields"];
-                //alert(field);
-                //alert(field["task"]);
-                //alert(task.len);
+                //var field = response["task"];
+                //var task = field["task"];
+
 
                 //for  (var i=0; i<task.length; i++) {
-                //    var data1 = response[0].data;
+                //    var data1 = response[0].data; }
 
-                //}
-
-              modal.find('.modal-body').html( title);
+              modal.find('.modal-body').html(title);
 
             },
             error: function(xhr, status, error) {
