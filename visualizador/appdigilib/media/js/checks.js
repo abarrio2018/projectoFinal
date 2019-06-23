@@ -11,21 +11,41 @@ $(document).ready(function() {
     });
 
 
-    $("#btn-modal").click(function(){
-        alert("estoy dentro");
-        $("#Modal").modal('show');
+    $('#Modal').on('shown.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var title = button.data('whatever');
+
+
+        id_article = event.relatedTarget.id;
+
+        var modal = $(this);
+
+        $.ajax({
+            beforeSend: function(xhr, settings) {
+          var csrftoken = getCookie('csrftoken');
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          },
+            type:'POST',
+            url:'detail/',
+            dataType: 'json',
+            data: {
+              'id_article': id_article,
+
+              },
+            success: function(response){
+                var title =response.title;
+                var author = response.author;
+
+              modal.find('.modal-body').html(title,response );
+
+            },
+            error: function(xhr, status, error) {
+                alert("error");
+            }
+        });
 
     });
 
-
-    $('#Modal').on('shown.bs.modal', function () {
-        $('#Modal').trigger('focus')
-    });
-
-function ShowModal () {
-    alert("estoy dentro");
-
-}ñ
 
 function getCookie(name) {
 

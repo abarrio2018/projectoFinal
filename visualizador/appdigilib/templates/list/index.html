@@ -91,7 +91,7 @@
         </div>
     </div><br>
 
-<!-- Modal -->
+    <!-- Modal -->
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -100,13 +100,7 @@
         <h4 class="modal-title" id="myModalLabel">Details of the paper</h4>
       </div>
       <div class="modal-body">
-          {{ id_content.title}}
-          <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{articulo.image.image.url}}"></div>
-          {{ articulo.autor}}
-          {{ articulo.doi }}
-          {{ articulo.published_date}}
-          {{ articulo.categoria }}
-          {{ articulo.task }}
+        {{ title }}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -114,6 +108,7 @@
     </div>
   </div>
 </div>
+<!-- Fin Modal -->
 
 
 </body>

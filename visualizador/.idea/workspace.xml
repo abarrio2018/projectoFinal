@@ -1195,8 +1195,12 @@
       <change beforePath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/django/views/templates/technical_500.html" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/django/views/templates/technical_500.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/pip-19.1.1.dist-info/RECORD" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/pip-19.1.1.dist-info/RECORD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/media/js/checks.js" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/media/js/checks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appdigilib/templates/list/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/templates/list/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualizador/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualizador/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/templates/list/index_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/templates/list/index_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/templates/list/render.html" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/templates/list/render.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -1227,28 +1231,26 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="122">
+              <caret line="102" column="17" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/visualizador/settings.py">
+        <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="66">
+              <caret line="183" column="19" lean-forward="true" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+                <element signature="e#3806#5090#0" />
+                <element signature="e#5927#6319#0" />
+                <element signature="e#6508#7411#0" />
+                <element signature="e#7442#7903#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1256,8 +1258,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/appdigilib/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="30" column="10" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="10" />
+            <state relative-caret-position="312">
+              <caret line="34" column="37" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="37" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -1265,11 +1267,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/appdigilib/migrations/0002_auto_20190622_0059.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appdigilib/url.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+            <state relative-caret-position="176">
+              <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="38" column="59" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+              <folding>
+                <element signature="e#1038#1574#0" />
+                <element signature="e#1610#2421#0" />
+                <element signature="e#2462#3376#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1293,13 +1312,14 @@
       <find>Categoria</find>
       <find>categoria</find>
       <find>autor</find>
-      <find>categorys</find>
       <find>todos_art</find>
       <find>articulos</find>
       <find>articulo</find>
       <find>texto</find>
       <find>tareas</find>
       <find>Articulo</find>
+      <find>categorys</find>
+      <find>prin</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -1307,7 +1327,6 @@
       <replace>Category</replace>
       <replace>Categories</replace>
       <replace>author</replace>
-      <replace>categories</replace>
       <replace>check_category</replace>
       <replace>all_articles</replace>
       <replace>articles</replace>
@@ -1315,6 +1334,7 @@
       <replace>tasks</replace>
       <replace>Article</replace>
       <replace>article</replace>
+      <replace>categories</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/appdigilib/template</dir>
@@ -1339,17 +1359,17 @@
         <option value="$PROJECT_DIR$/appdigilib/tests.py" />
         <option value="$PROJECT_DIR$/appdigilib/test.py" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/modal.html" />
-        <option value="$PROJECT_DIR$/appdigilib/media/js/checks.js" />
         <option value="$PROJECT_DIR$/appdigilib/forms.py" />
-        <option value="$PROJECT_DIR$/appdigilib/templates/list/index_list.html" />
         <option value="$PROJECT_DIR$/appdigilib/models.py" />
         <option value="$PROJECT_DIR$/appdigilib/admin.py" />
-        <option value="$PROJECT_DIR$/appdigilib/url.py" />
-        <option value="$PROJECT_DIR$/appdigilib/templates/list/render.html" />
-        <option value="$PROJECT_DIR$/appdigilib/views.py" />
-        <option value="$PROJECT_DIR$/appdigilib/templates/list/index.html" />
         <option value="$PROJECT_DIR$/visualizador/settings.py" />
         <option value="$PROJECT_DIR$/appdigilib/migrations/0002_auto_20190622_0059.py" />
+        <option value="$PROJECT_DIR$/appdigilib/url.py" />
+        <option value="$PROJECT_DIR$/appdigilib/templates/list/render.html" />
+        <option value="$PROJECT_DIR$/appdigilib/templates/list/index_list.html" />
+        <option value="$PROJECT_DIR$/appdigilib/templates/list/index.html" />
+        <option value="$PROJECT_DIR$/appdigilib/views.py" />
+        <option value="$PROJECT_DIR$/appdigilib/media/js/checks.js" />
       </list>
     </option>
   </component>
@@ -1376,12 +1396,25 @@
             <path>
               <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
               <item name="visualizador" type="462c0819:PsiDirectoryNode" />
-              <item name="bower_components" type="462c0819:PsiDirectoryNode" />
+              <item name="appdigilib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
               <item name="visualizador" type="462c0819:PsiDirectoryNode" />
+              <item name="appdigilib" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
               <item name="visualizador" type="462c0819:PsiDirectoryNode" />
+              <item name="appdigilib" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="list" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
+              <item name="visualizador" type="462c0819:PsiDirectoryNode" />
+              <item name="bower_components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="visualizador" type="b2602c69:ProjectViewProjectNode" />
@@ -1564,7 +1597,7 @@
       <workItem from="1560708726761" duration="28044000" />
       <workItem from="1560888274083" duration="5691000" />
       <workItem from="1561140626992" duration="16405000" />
-      <workItem from="1561173029570" duration="4064000" />
+      <workItem from="1561173029570" duration="45984000" />
     </task>
     <task id="LOCAL-00001" summary="Create Form">
       <created>1559275177058</created>
@@ -1867,11 +1900,25 @@
       <option name="project" value="LOCAL" />
       <updated>1561153118562</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="NEWS MIGRATIONS">
+      <created>1561177407151</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1561177407151</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Show Modal">
+      <created>1561182139777</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1561182139777</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="350803000" />
+    <option name="totallyTimeSpent" value="392723000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1884,8 +1931,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="638" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973262" visible="true" weight="0.24102154" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973262" visible="true" weight="0.24102154" />
       <window_info id="Structure" order="1" sideWeight="0.5026738" side_tool="true" weight="0.23383878" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.5383104" />
@@ -1899,7 +1947,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3280943" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5027933" side_tool="true" weight="0.47544205" />
       <window_info anchor="bottom" id="Favorites" order="11" weight="0.3280943" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49720672" visible="true" weight="0.33005893" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.49720672" visible="true" weight="0.31630647" />
       <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49960095" weight="0.32612967" />
       <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="15" weight="0.3280943" />
@@ -1943,8 +1991,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Create extend of template" />
-    <MESSAGE value="Create form Categoria and AnaliticTask" />
     <MESSAGE value="Create Model for Categoria and AnaliticTask" />
     <MESSAGE value="Create addArticle" />
     <MESSAGE value="Administrate Category and Task" />
@@ -1968,7 +2014,9 @@
     <MESSAGE value="Test Search" />
     <MESSAGE value="Modal not show" />
     <MESSAGE value="change of name of all the spanish's variables and method" />
-    <option name="LAST_COMMIT_MESSAGE" value="change of name of all the spanish's variables and method" />
+    <MESSAGE value="NEWS MIGRATIONS" />
+    <MESSAGE value="Show Modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show Modal" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualizador$models.coverage" NAME="models Coverage Results" MODIFIED="1560658750580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/appdigilib" />
@@ -2163,13 +2211,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -2177,20 +2218,6 @@
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/render.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -2206,30 +2233,10 @@
     <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/examples/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="146" selection-start-line="146" selection-end-line="146" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/dist-packages/django/db/migrations/operations/fields.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="302" selection-start-line="302" selection-end-line="302" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/url.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2268,20 +2275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/migrations/0003_auto_20190616_1739.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-270" />
@@ -2292,6 +2285,13 @@
         <state relative-caret-position="-629" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/migrations/0002_auto_20190622_0059.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/visualizador/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -2299,20 +2299,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/render.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="46" lean-forward="true" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="30" column="10" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="10" />
+        <state relative-caret-position="312">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="37" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/migrations/0002_auto_20190622_0059.py">
+    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        <state relative-caret-position="105">
+          <caret line="7" column="105" selection-start-line="7" selection-start-column="105" selection-end-line="7" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/url.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="102" column="17" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="183" column="19" lean-forward="true" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#3806#5090#0" />
+            <element signature="e#5927#6319#0" />
+            <element signature="e#6508#7411#0" />
+            <element signature="e#7442#7903#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="38" column="59" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+          <folding>
+            <element signature="e#1038#1574#0" />
+            <element signature="e#1610#2421#0" />
+            <element signature="e#2462#3376#0" />
+          </folding>
         </state>
       </provider>
     </entry>

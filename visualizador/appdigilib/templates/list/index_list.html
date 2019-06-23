@@ -3,10 +3,10 @@
 {% block content %}
     {% if articles %}
         {% for article in articles %}
-            <div class="col-md-4" onclick="ShowModal()">
-                <div class="panel panel-primary" data-target="#Modal">
-                    <div class="panel-heading" data-toggle="modal" data-target="#Modal" id="id_content">{{ article.title}}</div>
-                    <div> {{ article.autor}}</div>
+            <div class="col-md-4">
+                <div class="panel panel-primary" data-target="#Modal" >
+                    <div class="panel-heading" data-toggle="modal" data-target="#Modal" id="{{ article.id }}" data-whatever="{{article.title}}">{{ article.title}}</div>
+                    <div data-whatever= "{{ article.author }}"> {{ article.autor}}</div>
 
                     <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{article.image.image.url}}"></div>
                     <div class="panel-footer">{{ article.published_date}}</div>
@@ -17,4 +17,5 @@
     {% else %}
 		<h1> There are not article to show</h1>
     {% endif %}
+
 {% endblock %}

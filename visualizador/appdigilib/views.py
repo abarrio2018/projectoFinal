@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 import json as JSON
+from django.core import serializers
 from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import JsonResponse, HttpResponse
+from django.http import QueryDict
 from .forms import *
 from django.db.models import Q
 from django.template import RequestContext
@@ -44,9 +46,9 @@ def List(request):
 def Update_ArticleXCategory(request):
 
     if request.method == 'POST':                                                            #Compruebo si la peticion es segura
-        check_category = request.POST.getlist('lista[]')                                 #Guardo la lista de categorias que enviò la peticiòn
+        check_category = request.POST.getlist('lista[]')                                    #Guardo la lista de categorias que enviò la peticiòn
 
-        all_articles = []                                                                      #Para almacenar los articulos que voy a mostrar
+        all_articles = []                                                                    #Para almacenar los articulos que voy a mostrar
         articles_mostrar = list(Article.objects.all().prefetch_related('categories'))
 
         #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @all_articles
@@ -77,16 +79,13 @@ def Update_ArticleXTask(request):
 
         all_articles = []                                                                   #Para almacenar los articulos que voy a mostrar
         articles_mostrar = list(Article.objects.all().prefetch_related('tasks'))            #Total de articulos actuales
-        print(articles_mostrar)
 
         #Para cada articulo compruebo si tiene al menos una tarea marcada, lo adiciono en @all_articles
         for x in range(0, len(articles_mostrar)):
             for y in range(0, len(task_marcada)):
 
-                print(task_marcada[y])
                 if Search_Task(articles_mostrar[x], task_marcada[y]):                     #Metodo auxiliar que dice si una categoria esta en un articulo
                     all_articles.append(articles_mostrar[x])
-                    print(all_articles)
                     break
     else:
         all_articles = Article.objects.all().values(Article.title, Article.author)
@@ -102,6 +101,7 @@ def Serach_Category(sarticle, scategory):
 
     list_cat_art = list(sarticle.categories.all())                 #Todas las categorias del articulo que viene como entrada
 
+
     for c in range(0, len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la categoria entrada
         if list_cat_art[c].category == scategory:
           return True
@@ -116,9 +116,8 @@ def Serach_Category(sarticle, scategory):
 def Search_Task(sArticle, stask):
 
     list_task_art = list(sArticle.tasks.all())                          #Lista de tareas del acrticulo de entrada
-    print(list_task_art)
+
     for t in range(0,len(list_task_art)):                               #Busca la tarea de la entrada en cada una de las que tiene el articulo
-        print(list_task_art[t])
         if list_task_art[t].task == stask:
             return True
     return False
@@ -144,6 +143,49 @@ def Search(request):
 
     html = render_to_string('list/render.html', {'articles': articles_names})
     return HttpResponse(html)                                                           #Devuelve el HTML con los articulos
+
+
+"""Metodo para visualizar los detalles del articulo
+Entrada: un articulo seleccionado
+Salida: TOdos los datos del articulo
+"""
+def Details(request):
+
+    if request.method == 'POST':                                             #Compruebo si la peticion es segura
+
+        id = request.POST.get('id_article')
+        article = Article.objects.filter(pk = id)
+
+        date_article = Article.objects.get(pk = id)
+        categories = date_article.categories.all()
+        task = date_article.tasks.all()
+
+        title = date_article.title
+        print(title)
+
+        author = date_article.author
+        #print(author)
+        #year = article.published_date
+        #print(year)
+        #doi = article.doi
+        #print(doi)
+
+
+    #date = {'article':article}
+
+    #response = JsonResponse({serialize('json', date),})    #response =serializers.serialize("json", date)  #response = serialize('json', date)
+    categories = serializers.serialize("json", categories)
+    task = serializers.serialize("json", task)
+    article = serializers.serialize("json", article)
+    print(categories)
+
+
+    response = {'title': title, 'author': author, 'categories': categories, 'task': task }
+    print(response)
+
+    return JsonResponse(response, safe=False)
+
+
 
 
 def Add_Image(request):

@@ -2,15 +2,15 @@
 {% block content %}
     {% if articles %}
         {% for article in articles %}
-            <div class="col-md-4" ><a href="{{article.doi}}">
+            <div class="col-md-4" >
                 <div class="panel panel-primary">
-                    <div class="panel-heading">{{ article.title}}</div>
-                    <div> {{ article.author}}</div>
+                    <div class="panel-heading" data-toggle="modal" data-target="#Modal" data-whatever1="{{article.title}}">{{ article.title}}</div>
+                    <div data-whatever2 = "{{ article.author }}"> {{ article.autor}}</div>
 
                     <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{article.image.image.url}}"></div>
                     <div class="panel-footer">{{ article.published_date}}</div>
                 </div>
-                </a>
+
             </div>
         {% endfor %}
     {% else %}
