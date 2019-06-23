@@ -12,12 +12,7 @@ $(document).ready(function() {
 
 
     $('#Modal').on('shown.bs.modal', function(event) {
-        var button = $(event.relatedTarget);
-        var title = button.data('whatever');
-
-
         id_article = event.relatedTarget.id;
-
         var modal = $(this);
 
         $.ajax({
@@ -33,14 +28,31 @@ $(document).ready(function() {
 
               },
             success: function(response){
+
                 var title =response.title;
                 var author = response.author;
+                var categories = response.categories;
+                var task = response.task;
+                alert(author);
+                alert(categories);
+                alert(task);
 
-              modal.find('.modal-body').html(title,response );
+                //var article = response.article;
+                //var field = task["fields"];
+                //alert(field);
+                //alert(field["task"]);
+                //alert(task.len);
+
+                //for  (var i=0; i<task.length; i++) {
+                //    var data1 = response[0].data;
+
+                //}
+
+              modal.find('.modal-body').html( title);
 
             },
             error: function(xhr, status, error) {
-                alert("error");
+                alert("This article is not exist.");
             }
         });
 

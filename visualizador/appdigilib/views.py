@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.views.decorators.csrf import requires_csrf_token
 from django.http import JsonResponse, HttpResponse
+import simplejson
 from django.http import QueryDict
 from .forms import *
 from django.db.models import Q
@@ -158,10 +159,10 @@ def Details(request):
 
         date_article = Article.objects.get(pk = id)
         categories = date_article.categories.all()
-        task = date_article.tasks.all()
+        task = date_article.tasks.all().only('task')
 
         title = date_article.title
-        print(title)
+        print(task)
 
         author = date_article.author
         #print(author)
@@ -171,19 +172,21 @@ def Details(request):
         #print(doi)
 
 
-    #date = {'article':article}
-
     #response = JsonResponse({serialize('json', date),})    #response =serializers.serialize("json", date)  #response = serialize('json', date)
     categories = serializers.serialize("json", categories)
     task = serializers.serialize("json", task)
     article = serializers.serialize("json", article)
-    print(categories)
+    #print(categories)
 
+    #task = serializers.serialize("json", task, fields=('task',))
+    print(article)
 
     response = {'title': title, 'author': author, 'categories': categories, 'task': task }
     print(response)
 
-    return JsonResponse(response, safe=False)
+    some_data = simplejson.dumps(response)
+    return HttpResponse(some_data, 'application/json')
+    #return JsonResponse(response, safe=False)
 
 
 
