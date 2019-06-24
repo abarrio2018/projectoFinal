@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
     $('.check_cat').change(function() {
         ajax_post_categorias();
     });
@@ -28,23 +27,6 @@ $(document).ready(function() {
 
               },
             success: function(response){
-
-                //var title =response.title;
-                //var author = response.author;
-                //var categories = response.categories;
-                //var task = response.task;
-                //alert(author);
-                //alert(categories);
-                //alert(task);
-
-                //var article = response.article;
-                //var field = response["task"];
-                //var task = field["task"];
-
-
-                //for  (var i=0; i<task.length; i++) {
-                //    var data1 = response[0].data; }
-
               modal.find('.modal-body').html(response);
 
             },
