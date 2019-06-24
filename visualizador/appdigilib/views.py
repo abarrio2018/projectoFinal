@@ -29,9 +29,9 @@ def List(request):
         articles = Article.objects.filter(Q(title__contains = string_search) | Q(author__contains = string_search))
     else:
         articles = Article.objects.all().order_by('published_date')             #Extrae todos los articulos
-    categories = Category.objects.all()                                          #Extrae todas las cateorias insertadas
-    tasks = AnaliticTask.objects.all()                                         #EXtrae todas las tareas analiticas insertadas
-    images = Image.objects.all().order_by('article')                          #Extrae las imagenes de los articulos
+    categories = Category.objects.all()                                         #Extrae todas las cateorias insertadas
+    tasks = AnaliticTask.objects.all()                                          #EXtrae todas las tareas analiticas insertadas
+    images = Image.objects.all().order_by('article')                            #Extrae las imagenes de los articulos
 
     return render(request, 'list/index_list.html',
                   {'articles': articles, 'categories': categories, 'tasks': tasks, 'images': images})
@@ -147,44 +147,32 @@ def Search(request):
 
 
 """Metodo para visualizar los detalles del articulo
-Entrada: un articulo seleccionado
-Salida: TOdos los datos del articulo
+    Entrada: un articulo seleccionado
+    Salida: Todos los datos del articulo en un html para ser mostrados
 """
 def Details(request):
 
     if request.method == 'POST':                                             #Compruebo si la peticion es segura
 
         id = request.POST.get('id_article')
-        article = Article.objects.filter(pk = id)
 
-        date_article = Article.objects.get(pk = id)
-        categories = date_article.categories.all().only('category')
-        categories = list(categories.values('category'))
-        task = date_article.tasks.all().only('task')
-        task = list(task.values('task'))
-
-        print(task)
+        date_article = Article.objects.get(pk = id)                         #Obtener el objeto del art[iculo
+        categories = date_article.categories.all().only('category')         #Pido el objeto de tipo categoria del articulo
+        categories = list(categories.values('category'))                    #Para manejar la categoria la convierto en diccionario
+        task = date_article.tasks.all().only('task')                        #Pido el objeto de tipo categoria del articulo
+        task = list(task.values('task'))                                    #Para manejar la tarea la convierto en diccionario
 
         title = date_article.title
         author = date_article.author
-        #print(author)
-        #year = article.published_date
-        #print(year)
-        #doi = article.doi
-        #print(doi)
+        year = date_article.published_date
+        doi = date_article.doi
+        images = date_article.image
 
-    #categories = serializers.serialize("json", categories)
-    #task = serializers.serialize("json", task)
-    #article = serializers.serialize("json", article)
-
-    response = {'task': task, 'categories': categories, 'title': title, 'author':author}
-    print(response)
-
-    #some_data = simplejson.dumps(response)
-    #return HttpResponse(some_data, 'application/json')
-    return JsonResponse(response, safe=False)
-
-
+    return render(request, 'list/modal.html',                               #Mando a crear el cuerpo del modal con los respectivos datos
+                  {'categories': categories, 'year': year, 'doi':doi,
+                   'task': task, 'images': images,
+                   'title': title, 'author': author
+                   })
 
 
 def Add_Image(request):

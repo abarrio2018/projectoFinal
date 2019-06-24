@@ -1196,6 +1196,7 @@
       <change beforePath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/pip-19.1.1.dist-info/RECORD" beforeDir="false" afterPath="$PROJECT_DIR$/../digilib/lib/python3.6/site-packages/pip-19.1.1.dist-info/RECORD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appdigilib/media/js/checks.js" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/media/js/checks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appdigilib/templates/list/modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/templates/list/modal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appdigilib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/appdigilib/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1229,8 +1230,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="102" column="11" selection-start-line="102" selection-start-column="11" selection-end-line="102" selection-end-column="11" />
+            <state relative-caret-position="111">
+              <caret line="55" selection-start-line="55" selection-end-line="58" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -1247,14 +1248,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="172" selection-start-line="172" selection-end-line="172" />
+            <state relative-caret-position="2655">
+              <caret line="177" column="13" selection-start-line="177" selection-start-column="4" selection-end-line="177" selection-end-column="13" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <element signature="e#6436#7339#0" />
-                <element signature="e#8700#9161#0" />
-                <element signature="e#9189#9228#0" />
+                <element signature="e#8894#9355#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/modal.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -1283,11 +1291,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="50" column="53" lean-forward="true" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+            <state relative-caret-position="45">
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding>
                 <element signature="e#1561#2097#0" />
                 <element signature="e#2133#2944#0" />
@@ -1362,7 +1370,6 @@
         <option value="$PROJECT_DIR$/appdigilib/templates/list/search.html" />
         <option value="$PROJECT_DIR$/appdigilib/tests.py" />
         <option value="$PROJECT_DIR$/appdigilib/test.py" />
-        <option value="$PROJECT_DIR$/appdigilib/templates/list/modal.html" />
         <option value="$PROJECT_DIR$/appdigilib/forms.py" />
         <option value="$PROJECT_DIR$/appdigilib/models.py" />
         <option value="$PROJECT_DIR$/appdigilib/admin.py" />
@@ -1371,9 +1378,10 @@
         <option value="$PROJECT_DIR$/appdigilib/url.py" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/render.html" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/index_list.html" />
-        <option value="$PROJECT_DIR$/appdigilib/views.py" />
         <option value="$PROJECT_DIR$/appdigilib/templates/list/index.html" />
         <option value="$PROJECT_DIR$/appdigilib/media/js/checks.js" />
+        <option value="$PROJECT_DIR$/appdigilib/templates/list/modal.html" />
+        <option value="$PROJECT_DIR$/appdigilib/views.py" />
       </list>
     </option>
   </component>
@@ -1608,7 +1616,7 @@
       <workItem from="1561140626992" duration="16405000" />
       <workItem from="1561173029570" duration="49532000" />
       <workItem from="1561310553909" duration="3349000" />
-      <workItem from="1561319575637" duration="6768000" />
+      <workItem from="1561319575637" duration="15482000" />
     </task>
     <task id="LOCAL-00001" summary="Create Form">
       <created>1559275177058</created>
@@ -1932,11 +1940,25 @@
       <option name="project" value="LOCAL" />
       <updated>1561275812988</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Only title">
+      <created>1561327645734</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1561327645734</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Ajax with date">
+      <created>1561330487424</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1561330487424</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="406388000" />
+    <option name="totallyTimeSpent" value="415102000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1950,7 +1972,7 @@
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="638" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973262" visible="true" weight="0.2490024" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973262" visible="true" weight="0.2490024" />
       <window_info id="Structure" order="1" sideWeight="0.5026738" side_tool="true" weight="0.23383878" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.5383104" />
@@ -1964,7 +1986,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3280943" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5027933" side_tool="true" weight="0.47544205" />
       <window_info anchor="bottom" id="Favorites" order="11" weight="0.3280943" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49720672" visible="true" weight="0.46954814" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49720672" weight="0.46954814" />
       <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49960095" weight="0.32612967" />
       <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="15" weight="0.3280943" />
@@ -2008,7 +2030,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Administrate Category and Task" />
     <MESSAGE value="Imagenes" />
     <MESSAGE value="VISUALIZATION IMAGE" />
     <MESSAGE value="0806" />
@@ -2033,7 +2054,8 @@
     <MESSAGE value="Show Modal" />
     <MESSAGE value="Modal with title" />
     <MESSAGE value="Only title" />
-    <option name="LAST_COMMIT_MESSAGE" value="Only title" />
+    <MESSAGE value="Ajax with date" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajax with date" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/visualizador$models.coverage" NAME="models Coverage Results" MODIFIED="1560658750580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/appdigilib" />
@@ -2301,13 +2323,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/render.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -2342,26 +2357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="172" selection-start-line="172" selection-end-line="172" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <element signature="e#6436#7339#0" />
-            <element signature="e#8700#9161#0" />
-            <element signature="e#9189#9228#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="102" column="11" selection-start-line="102" selection-start-column="11" selection-end-line="102" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -2369,15 +2364,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="55" selection-start-line="55" selection-end-line="58" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/appdigilib/media/js/checks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="50" column="53" lean-forward="true" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+        <state relative-caret-position="45">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
             <element signature="e#1561#2097#0" />
             <element signature="e#2133#2944#0" />
             <element signature="e#2985#3899#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2655">
+          <caret line="177" column="13" selection-start-line="177" selection-start-column="4" selection-end-line="177" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#8894#9355#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appdigilib/templates/list/modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>

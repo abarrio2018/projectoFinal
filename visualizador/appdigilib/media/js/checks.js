@@ -22,20 +22,20 @@ $(document).ready(function() {
           },
             type:'POST',
             url:'detail/',
-            dataType: 'json',
+            dataType: 'html',
             data: {
               'id_article': id_article,
 
               },
             success: function(response){
 
-                var title =response.title;
-                var author = response.author;
-                var categories = response.categories;
-                var task = response.task;
-                alert(author);
-                alert(categories);
-                alert(task);
+                //var title =response.title;
+                //var author = response.author;
+                //var categories = response.categories;
+                //var task = response.task;
+                //alert(author);
+                //alert(categories);
+                //alert(task);
 
                 //var article = response.article;
                 //var field = response["task"];
@@ -45,7 +45,7 @@ $(document).ready(function() {
                 //for  (var i=0; i<task.length; i++) {
                 //    var data1 = response[0].data; }
 
-              modal.find('.modal-body').html(title);
+              modal.find('.modal-body').html(response);
 
             },
             error: function(xhr, status, error) {
