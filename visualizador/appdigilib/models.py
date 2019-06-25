@@ -33,7 +33,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     doi = models.CharField(max_length=250)
     text = models.TextField()
-    published_date = models.IntegerField(MinValueValidator(1800,))
+    published_date = models.IntegerField()
     categories = models.ManyToManyField('Category')
     tasks = models.ManyToManyField('AnaliticTask')
     image = models.ForeignKey(Image, on_delete=models.CASCADE)

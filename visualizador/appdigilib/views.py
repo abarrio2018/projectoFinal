@@ -28,6 +28,7 @@ def List(request):
 
         #Consulta para buscar por el titulo, autor y Resumen
         articles = Article.objects.filter(Q(title__contains = string_search) | Q(author__contains = string_search))
+
     else:
         articles = Article.objects.all().order_by('published_date')             #Extrae todos los articulos
     categories = Category.objects.all()                                         #Extrae todas las cateorias insertadas
