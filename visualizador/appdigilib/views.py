@@ -8,6 +8,7 @@ from django.http import JsonResponse, HttpResponse
 import simplejson
 from django.http import QueryDict
 from .forms import *
+import datetime
 from django.db.models import Q
 from django.template import RequestContext
 from appdigilib.models import Article, Category, AnaliticTask, Image
@@ -32,6 +33,8 @@ def List(request):
     categories = Category.objects.all()                                         #Extrae todas las cateorias insertadas
     tasks = AnaliticTask.objects.all()                                          #EXtrae todas las tareas analiticas insertadas
     images = Image.objects.all().order_by('article')                            #Extrae las imagenes de los articulos
+
+
 
     return render(request, 'list/index_list.html',
                   {'articles': articles, 'categories': categories, 'tasks': tasks, 'images': images})
@@ -191,6 +194,21 @@ def Add_Image(request):
         form = ImagenForm
     return render(request, 'list/article.html', {'form': form, 'categories': categories, 'tasks': tasks})
 
+"""
+Método auxiliar para extraer solo el año de la fecha
+Entrada:
+Salida: 
+"""
+def FormarYear(date):
+    print(date)
+    #str(date)
+    year = date.year
+    print(year)
+
+    #format_year= year.strftime('%y')
+    #print (format_year)
+
+    return year
 
 
 def error(request):

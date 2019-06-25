@@ -3,6 +3,7 @@ from xmlrpc.client import DateTime
 from django.db import models
 from django.utils.timezone import now
 from datetime import date
+from django.core.validators import MinValueValidator
 # Create your models here.
 
 
@@ -32,7 +33,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     doi = models.CharField(max_length=250)
     text = models.TextField()
-    published_date = models.DateField()
+    published_date = models.IntegerField(MinValueValidator(1800,))
     categories = models.ManyToManyField('Category')
     tasks = models.ManyToManyField('AnaliticTask')
     image = models.ForeignKey(Image, on_delete=models.CASCADE)

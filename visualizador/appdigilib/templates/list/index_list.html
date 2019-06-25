@@ -9,13 +9,13 @@
                     <div data-whatever= "{{ article.author }}"> {{ article.autor}}</div>
 
                     <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{article.image.image.url}}"></div>
-                    <div class="panel-footer">{{ article.published_date}}</div>
+                    <div class="panel-footer" >{{ article.published_date}}</div>
                 </div>
                 </a>
             </div>
         {% endfor %}
     {% else %}
-		<h1> There are not article to show</h1>
+		<h1> There is not article to show</h1>
     {% endif %}
 
 {% endblock %}
