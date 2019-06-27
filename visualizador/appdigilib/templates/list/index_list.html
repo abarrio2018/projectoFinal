@@ -3,7 +3,7 @@
 {% block content %}
     {% if articles %}
         {% for article in articles %}
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="panel panel-primary" data-target="#Modal" >
                     <div class="panel-heading" data-toggle="modal" data-target="#Modal" id="{{ article.id }}" data-whatever="{{article.title}}">{{ article.title}}</div>
                     <div data-whatever= "{{ article.author }}"> {{ article.autor}}</div>
