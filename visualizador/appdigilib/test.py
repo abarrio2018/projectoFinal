@@ -7,39 +7,3 @@ from django.test import TestCase
 """
 # Create your tests here.
 import unittest
-from appdigilib.views import CateSerach
-
-
-class Test_Articles(unittest.TestCase):
-
-    """def setUp(self):
-        print("Preparando el contexto")
-        categorys = ['Ranking', 'Flow']
-        analitictask=['Sumarized', 'Labeled']
-        article= ['Sandeep Reddivari, Zhangji Chen, Nan Niu','ReCVisu: A tool for clustering-based visual exploration of requirements',
-                   '10.1109/RE.2012.6345828', 'Clustering is of great practical value in discovering natural groupings of large numbers of requirements artifacts.',
-                   '28/09/2012', 'Clustering', 'Correletion','']
-                   
-        def tearDown(self):
-            print("Destruyendo el contexto")
-             del(self.numeros)
-    """
-
-    def Test_Search_False_of_Category_in_Article(self):
-        # input
-        article = ['Sandeep Reddivari, Zhangji Chen, Nan Niu',
-                   'ReCVisu: A tool for clustering-based visual exploration of requirements',
-                   '10.1109/RE.2012.6345828',
-                   'Clustering is of great practical value in discovering natural groupings of large numbers of requirements artifacts.',
-                   '28/09/2012', 'Clustering', 'Correletion', '']
-        categorys = 'Ranking'
-
-        #act
-        result = CateSerach(article, categorys)
-
-        #assert
-        self.assertFalse(result)
-
-
-if __name__ == "__main__":
-    unittest.main()
