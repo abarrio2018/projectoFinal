@@ -1,4 +1,4 @@
-<!-- Cuerpo del Modal -->
+<!-- MODAL BODY  -->
           <h2>{{ title }}</h2>
           <div class="col-md-6"><img class="img-responsive" style="width:100%" src="{{images.image.url}}"></div>
           <div class="col-md-6">
@@ -15,7 +15,7 @@
               {% endif %}
 
               {% if task %}
-                 <label>TASK: </label>
+                 <label>TASKS: </label>
                   {% for t in task %}
                     <div>{{t.task}}</div>
                   {% endfor %}

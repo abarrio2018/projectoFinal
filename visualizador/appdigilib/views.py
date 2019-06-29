@@ -1,3 +1,7 @@
+"""
+Create by abarrio
+Date: 08/04/2019
+"""
 from django.shortcuts import render, redirect
 import json as JSON
 from django.core import serializers
@@ -14,54 +18,57 @@ from django.template import RequestContext
 from appdigilib.models import Article, Category, AnaliticTask, Image
 from appdigilib.forms import ArticleForm, CategoryForm, AnaliticTaskForm
 
-
-"""Metodo para renderizar la pagina principal:
-   Entrada: @categoria, @tareas_analiticas, @articulos
-   Comprueba cuales son los articulos que hay que mostrar dependiento de las selecciones hecha en la vista
-   Devuelve: @lista de articulos
+""" Method to render the main page:
+    Input: @category, @tareas_analiticas, @articulos
+    Check which items are to be shown depending on the selections made in the view
+    Returns: @list of articles
 """
 @requires_csrf_token
-def List(request):
+def show_list(request):
+    if request.method == 'POST':                                        # Check if the POST method comes from the search
+        string_search = request.POST.get('search')                      # I save the text to search
 
-    if request.method == 'POST':                                                #Comprueba si el metodo el POST, viene de la busqueda
-        string_search = request.POST.get('search')                              #El texto que tengo que buscar
-
-        #Consulta para buscar por el titulo, autor y Resumen
-        articles = Article.objects.filter(Q(title__contains = string_search) | Q(author__contains = string_search))
-
+        articles = Article.objects.filter(                              # Query to search by title and author
+            Q(title__contains=string_search) |
+            Q(author__contains=string_search)
+        )
     else:
-        articles = Article.objects.all().order_by('published_date')             #Extrae todos los articulos
-    categories = Category.objects.all()                                         #Extrae todas las cateorias insertadas
-    tasks = AnaliticTask.objects.all()                                          #EXtrae todas las tareas analiticas insertadas
-    images = Image.objects.all().order_by('article')                            #Extrae las imagenes de los articulos
+        articles = Article.objects.all().order_by('published_date')     # Show all articles without having searched
 
-
+    categories = Category.objects.all()                                 # Save all categories for left menu
+    tasks = AnaliticTask.objects.all()                                  # Save all analytical tasks for left menu
+    images = Image.objects.all().order_by('article')                    # Save all the images of the articles
 
     return render(request, 'list/index_list.html',
-                  {'articles': articles, 'categories': categories, 'tasks': tasks, 'images': images})
+                  {'articles': articles,                                # List the items in the main interface
+                   'categories': categories,                            # load all the data from the left menu
+                   'tasks': tasks,
+                   'images': images}
+                  )
 
 
-"""Metodo para actualizar los articulos dependiendo de las categoria marcadas en la vista:
-   Entrada: @peticion Ajax de la vista con los check marcados.
-   Comprueba para cada articulo, si tiene al menos una categoria de la lista, sino, lo quita
-   de la lista de articulos a mostrar
-   Salida: La lista de articulos a mostrar
+"""Method to update the articles depending on the category marked in the view:
+    Input: Ajax @peticion of the view with the check marked.
+    Check for each item, if it has at least one category of the list, else, 
+    remove it from the list of items to display.
+    Returns: The list of items to be displayed
 """
 @requires_csrf_token
-def Update_ArticleXCategory(request):
+def update_article_category(request):
 
-    if request.method == 'POST':                                                            #Compruebo si la peticion es segura
-        check_category = request.POST.getlist('lista[]')                                    #Guardo la lista de categorias que enviò la peticiòn
+    if request.method == 'POST':                                                            #I check if the request is safe
+        check_category = request.POST.getlist('lista[]')                                    #I save the list of categories that sent the request
+        all_articles = []                                                                   #will store the items that I will show
+        articles_show = list(Article.objects.all().prefetch_related('categories'))          #Total of current articles
 
-        all_articles = []                                                                    #Para almacenar los articulos que voy a mostrar
-        articles_mostrar = list(Article.objects.all().prefetch_related('categories'))
-
-        #Para cada articulo compruebo si tiene al menos una categoria marcada, lo adiciono en @all_articles
-        for x in range(0, len(articles_mostrar)):
+        #I check if the article has at least one of the categories that are marked,
+        # I add it in @all_articles
+        for x in range(0, len(articles_show)):
             for y in range(0, len(check_category)):
 
-                if Serach_Category(articles_mostrar[x], check_category[y]):                #Metodo auxiliar que dice si una categoria esta en un articulo
-                    all_articles.append(articles_mostrar[x])
+                # Auxiliary method that says if a category is in an article
+                if serach_category(articles_show[x], check_category[y]):
+                    all_articles.append(articles_show[x])
                     break
     else:
         all_articles = Article.objects.all().values(Article.title, Article.author)
@@ -70,27 +77,29 @@ def Update_ArticleXCategory(request):
     return HttpResponse(html)
 
 
-"""Metodo para actualizar los articulos dependiendo de las tareas analiticas marcadas en la vista:
-   Entrada: @peticion Ajax de la vista con los check marcados.
-   Comprueba para cada articulo, si tiene al menos una tarea analitica de la lista, sino, lo quita
-   de la lista de articulos a mostrar
-   Salida: La lista de articulos a mostrar
+
+"""Method to update the articles depending on the analytical tasks marked in the view:
+    Input: Ajax @peticion of the view with the check marked.
+    Check for each item, if it has at least one analytical task from the list, else, 
+    remove it from the list of items to display
+    Return: The list of items to be displayed
 """
 @requires_csrf_token
-def Update_ArticleXTask(request):
+def update_article_task(request):
 
-    if request.method == 'POST':                                                            #Compruebo si la peticion es segura
-        task_marcada = request.POST.getlist('lista[]')                                      #Guardo la lista de tareas que enviò la peticiòn
+    if request.method == 'POST':                                                            #I check if the request is safe
+        task_checked = request.POST.getlist('lista[]')                                      #I save the list of Task that sent the request
 
-        all_articles = []                                                                   #Para almacenar los articulos que voy a mostrar
-        articles_mostrar = list(Article.objects.all().prefetch_related('tasks'))            #Total de articulos actuales
+        all_articles = []                                                                   #will store the items that I will show
+        articles_show = list(Article.objects.all().prefetch_related('tasks'))               #Total of current articles
 
-        #Para cada articulo compruebo si tiene al menos una tarea marcada, lo adiciono en @all_articles
-        for x in range(0, len(articles_mostrar)):
-            for y in range(0, len(task_marcada)):
+        #For each article I check if it has at least one task marked,
+        # I add it in @all_articles
+        for x in range(0, len(articles_show)):
+            for y in range(0, len(task_checked)):
 
-                if Search_Task(articles_mostrar[x], task_marcada[y]):                     #Metodo auxiliar que dice si una categoria esta en un articulo
-                    all_articles.append(articles_mostrar[x])
+                if search_task(articles_show[x], task_checked[y]):                     #Auxiliary method that says if a task is in an article
+                    all_articles.append(articles_show[x])
                     break
     else:
         all_articles = Article.objects.all().values(Article.title, Article.author)
@@ -99,118 +108,100 @@ def Update_ArticleXTask(request):
     return HttpResponse(html)
 
 
-"""Metodo auxiliar que busca si un articulo tiene una determinada categorìa
-    Entrada:@un articulo, @una categoria
-    Devuelve True si ese articulo tiene esa categoria, False en caso contrario"""
-def Serach_Category(sarticle, scategory):
 
-    list_cat_art = list(sarticle.categories.all())                 #Todas las categorias del articulo que viene como entrada
+"""Auxiliary method that searches if an article has a certain category.
+     Input: @a article, @a category
+     Returns True if that item has this category, False otherwise.
+"""
+def serach_category(sarticle, scategory):
+
+    list_cat_art = list(sarticle.categories.all())             #All categories of the article that comes as an entry
 
 
-    for c in range(0, len(list_cat_art)):                            #Para cada categoria del articulo si es igual a la categoria entrada
+    for c in range(0, len(list_cat_art)):                      #Search if the entry category exists in the article
         if list_cat_art[c].category == scategory:
           return True
     return False
 
 
-"""Metodo auxiliar que busca si un articulo tiene una determinada tarea analitica
-    Entrada:@un articulo, @una tarea
-    Devuelve True si ese articulo tiene esa tarea, False en caso contrario"""
+"""Auxiliary method that searches if an article has a certain analytical task.
+     Input: @an article, @a task
+     Returns True if that article has that task, False otherwise
+"""
+def search_task(sArticle, stask):
 
+    list_task_art = list(sArticle.tasks.all())                     #Task list of the input article
 
-def Search_Task(sArticle, stask):
-
-    list_task_art = list(sArticle.tasks.all())                          #Lista de tareas del acrticulo de entrada
-
-    for t in range(0,len(list_task_art)):                               #Busca la tarea de la entrada en cada una de las que tiene el articulo
+    for t in range(0,len(list_task_art)):                          #Search if the task exists in the article
         if list_task_art[t].task == stask:
             return True
     return False
 
 
-"""Metodo para busca articulos, dando una frase
-    Entrada:@texto
-    Devuelve: @Lista de articulos que contienen el texto en el Titulo, Autor o Resumen
+"""Method to search for articles, giving a phrase
+    Input: @text
+    Returns: @ List of articles that contain the text in the Title or Author
 """
+@requires_csrf_token
+def search(request):
 
+    string_search = request.POST.get('search')                                          #The text that I have to search
 
-def Search(request):
-
-    string_search = request.POST.get('search')                                           #El text que tengo que buscar
-
-    articles_names = Article.objects.filter(Q(title__contains=string_search) |          #Consulta para buscar por el titulo, autor y Resumen
+    articles_names = Article.objects.filter(Q(title__contains=string_search) |          #Query to search by title, author and Summary
                                              Q(author__contains=string_search |
                                              Q(text__contains=string_search)))
 
-    #Consulta para buscar por el titulo, autor y Resumen
-    # da error con esta busqueda... | Q(text__contains=string_search) ....debe ser por el tipo de dato en models
-    articles_names = Article.objects.filter(Q(title__contains=string_search) | Q(author__contains=string_search))
-
     html = render_to_string('list/render.html', {'articles': articles_names})
-    return HttpResponse(html)                                                           #Devuelve el HTML con los articulos
+    return HttpResponse(html)                                                           #Returns the found articles
 
-
-"""Metodo para visualizar los detalles del articulo
-    Entrada: un articulo seleccionado
-    Salida: Todos los datos del articulo en un html para ser mostrados
+"""Method to visualize the details of the article
+     Input: a selected article
+     Return: All the data of the article in an html to be shown
 """
-def Details(request):
-
-    if request.method == 'POST':                                             #Compruebo si la peticion es segura
-
+def details(request):
+    if request.method == 'POST':                                             #If the details were requested
         id = request.POST.get('id_article')
 
-        date_article = Article.objects.get(pk = id)                         #Obtener el objeto del art[iculo
-        categories = date_article.categories.all().only('category')         #Pido el objeto de tipo categoria del articulo
-        categories = list(categories.values('category'))                    #Para manejar la categoria la convierto en diccionario
-        task = date_article.tasks.all().only('task')                        #Pido el objeto de tipo categoria del articulo
-        task = list(task.values('task'))                                    #Para manejar la tarea la convierto en diccionario
+        data_article = Article.objects.get(pk = id)                         #I get the object of the article
+        categories = data_article.categories.all().only('category')         #I get the Category of the article as an object
+        categories = list(categories.values('category'))                    #To the Category object, I ask for the values
+        task = data_article.tasks.all().only('task')                        #I get the tasks of the article as an object
+        task = list(task.values('task'))                                    #To the Task object, I ask for the values
 
-        title = date_article.title
-        author = date_article.author
-        year = date_article.published_date
-        doi = date_article.doi
-        images = date_article.image
+        title = data_article.title
+        author = data_article.author
+        year = data_article.published_date
+        doi = data_article.doi
+        images = data_article.image
 
-    return render(request, 'list/modal.html',                               #Mando a crear el cuerpo del modal con los respectivos datos
+    return render(request, 'list/modal.html',                               #Create the body of the modal with the respective data
                   {'categories': categories, 'year': year, 'doi':doi,
                    'task': task, 'images': images,
                    'title': title, 'author': author
                    })
 
-
-def Add_Image(request):
-    categories = Category.objects.all()
-    tasks = AnaliticTask.objects.all()
+"""Method to insert an image in my static directory"""
+def add_image(request):
+    categories = Category.objects.all()                         #Save all categories for left menu
+    tasks = AnaliticTask.objects.all()                          #Save all task for left menu
 
     if request.method == 'POST':
-        form = ImagenForm(request.POST, request.FILES)
+        form = ImagenForm(request.POST, request.FILES)          #Form with the files
 
         if form.is_valid():
             form.save(commit=True)
-            return redirect('post_list')
+            return redirect('post_list')                        #Show the initial page after saving the form
         else:
-            return redirect('error')
+            return redirect('error')                            #The form is not valid
     else:
         form = ImagenForm
-    return render(request, 'list/article.html', {'form': form, 'categories': categories, 'tasks': tasks})
-
-"""
-Método auxiliar para extraer solo el año de la fecha
-Entrada:
-Salida: 
-"""
-def FormarYear(date):
-    print(date)
-    #str(date)
-    year = date.year
-    print(year)
-
-    #format_year= year.strftime('%y')
-    #print (format_year)
-
-    return year
+    return render(request, 'list/article.html',
+                  {'form': form,
+                   'categories': categories,
+                   'tasks': tasks}
+                  )
 
 
+"""Auxiliary method that shows a standard error"""
 def error(request):
-    return HttpResponse("Algo deu errado.")
+    return HttpResponse("Something is wrong.")
