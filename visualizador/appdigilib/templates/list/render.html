@@ -1,19 +1,28 @@
-
 {% block content %}
     {% if articles %}
         {% for article in articles %}
-            <div class="col-md-4" >
-                <div class="panel panel-primary">
-                    <div class="panel-heading" data-toggle="modal" data-target="#Modal" data-whatever1="{{article.title}}">{{ article.title}}</div>
-                    <div data-whatever2 = "{{ article.author }}"> {{ article.autor}}</div>
+         {% if forloop.counter0|divisibleby:"3" == 1 %}
+            {% if forloop.counter0 > 0 %}
+                </div>
+            {%endif%}
+             <div class="col-md-12">
+                {%endif%}
+            <div class="col-md-4">
+                <div class="panel panel-primary" data-target="#Modal" >
+                    <div class="panel-heading" data-toggle="modal" data-target="#Modal" id="{{ article.id }}" data-whatever="{{article.title}}">{{ article.title}}</div>
+                    <div data-whatever= "{{ article.author }}"> {{ article.autor}}</div>
 
                     <div class="panel-body"><img class="img-responsive" style="width:100%" src="{{article.image.image.url}}"></div>
-                    <div class="panel-footer">{{ article.published_date}}</div>
+                    <div class="panel-footer" >{{ article.published_date}}</div>
                 </div>
-
+                </a>
             </div>
+            {% if forloop.last%}
+             </div>
+                {%endif%}
         {% endfor %}
     {% else %}
 		<h1> There is not article to show</h1>
     {% endif %}
+
 {% endblock %}
