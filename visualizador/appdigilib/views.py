@@ -18,8 +18,9 @@ from django.template import RequestContext
 from appdigilib.models import Article, Category, AnaliticTask, Image
 from appdigilib.forms import ArticleForm, CategoryForm, AnaliticTaskForm
 
+
 """ Method to render the main page:
-    Input: @category, @tareas_analiticas, @articulos
+    Input: @request
     Check which items are to be shown depending on the selections made in the view
     Returns: @list of articles
 """
@@ -113,13 +114,13 @@ def update_article_task(request):
      Input: @a article, @a category
      Returns True if that item has this category, False otherwise.
 """
-def serach_category(sarticle, scategory):
+def serach_category(s_article, s_category):
 
-    list_cat_art = list(sarticle.categories.all())             #All categories of the article that comes as an entry
+    list_cat_art = list(s_article.categories.all())             #All categories of the article that comes as an entry
 
 
     for c in range(0, len(list_cat_art)):                      #Search if the entry category exists in the article
-        if list_cat_art[c].category == scategory:
+        if list_cat_art[c].category == s_category:
           return True
     return False
 
@@ -128,11 +129,11 @@ def serach_category(sarticle, scategory):
      Input: @an article, @a task
      Returns True if that article has that task, False otherwise
 """
-def search_task(sArticle, stask):
+def search_task(s_article, stask):
 
-    list_task_art = list(sArticle.tasks.all())                     #Task list of the input article
+    list_task_art = list(s_article.tasks.all())                   #Task list of the input article
 
-    for t in range(0,len(list_task_art)):                          #Search if the task exists in the article
+    for t in range(0,len(list_task_art)):                         #Search if the task exists in the article
         if list_task_art[t].task == stask:
             return True
     return False
