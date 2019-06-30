@@ -78,7 +78,6 @@ def update_article_category(request):
     return HttpResponse(html)
 
 
-
 """Method to update the articles depending on the analytical tasks marked in the view:
     Input: Ajax @peticion of the view with the check marked.
     Check for each item, if it has at least one analytical task from the list, else, 
@@ -107,7 +106,6 @@ def update_article_task(request):
 
     html = render_to_string('list/render.html', {'articles': all_articles})
     return HttpResponse(html)
-
 
 
 """Auxiliary method that searches if an article has a certain category.
@@ -155,6 +153,7 @@ def search(request):
     html = render_to_string('list/render.html', {'articles': articles_names})
     return HttpResponse(html)                                                           #Returns the found articles
 
+
 """Method to visualize the details of the article
      Input: a selected article
      Return: All the data of the article in an html to be shown
@@ -180,6 +179,7 @@ def details(request):
                    'task': task, 'images': images,
                    'title': title, 'author': author
                    })
+
 
 """Method to insert an image in my static directory"""
 def add_image(request):
