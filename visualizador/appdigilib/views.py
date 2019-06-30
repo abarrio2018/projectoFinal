@@ -129,12 +129,12 @@ def serach_category(s_article, s_category):
      Input: @an article, @a task
      Returns True if that article has that task, False otherwise
 """
-def search_task(s_article, stask):
+def search_task(s_article, s_task):
 
     list_task_art = list(s_article.tasks.all())                   #Task list of the input article
 
     for t in range(0,len(list_task_art)):                         #Search if the task exists in the article
-        if list_task_art[t].task == stask:
+        if list_task_art[t].task == s_task:
             return True
     return False
 
