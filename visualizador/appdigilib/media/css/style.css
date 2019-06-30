@@ -3,4 +3,6 @@
     white-space: nowrap;
     overflow: hidden;
     }
-
+.container div{
+    cursor: pointer;
+}
