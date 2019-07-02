@@ -35,7 +35,7 @@
              <p>A Visual Survey of Text Mining Visualization for Requirement Engineering</p>
         </div>
         <!--<a type="" href="{% url 'nova_img' %}">Imagen</a>  data-toggle="modal" data-target="#Modal"-->
-        <div width="100%" placeholder="col-xs-1">
+        <div class="container text-center" width="100%" placeholder="col-xs-1">
             <form method="POST" class="form-inline center" action="/" id="Search"> {%csrf_token %}
                 <input type="text" name="search" class="form-control search-group-continer" size="100%" aling placeholder="Text in the title or author's name" align="center">
                 <button type="submit" class="btn btn-primary" onclick="{{ buscar }}">Search</button>
