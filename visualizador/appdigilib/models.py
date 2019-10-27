@@ -25,6 +25,13 @@ class AnaliticTask(models.Model):
     def __str__(self):
         return self.task
 
+# Model for entity: data source
+class DataSource(models.Model):
+    data = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.data
+
 
 #Model for entity: image
 class Image(models.Model):

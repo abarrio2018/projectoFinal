@@ -1,6 +1,7 @@
 """
 Create by abarrio
 Date: 08/04/2019
+Manager for the articles.
 """
 from django.shortcuts import render, redirect
 import json as JSON
@@ -15,7 +16,7 @@ from .forms import *
 import datetime
 from django.db.models import Q
 from django.template import RequestContext
-from appdigilib.models import Article, Category, AnaliticTask, Image
+from appdigilib.models import Article, Category, AnaliticTask, Image, DataSource
 from appdigilib.forms import ArticleForm, CategoryForm, AnaliticTaskForm
 
 
@@ -39,12 +40,14 @@ def show_list(request):
     categories = Category.objects.all()                                 # Save all categories for left menu
     tasks = AnaliticTask.objects.all()                                  # Save all analytical tasks for left menu
     images = Image.objects.all().order_by('article')                    # Save all the images of the articles
+    dataSource = DataSource.objects.all()                               # Save all data sources for left menu
 
     return render(request, 'list/index_list.html',
                   {'articles': articles,                                # List the items in the main interface
                    'categories': categories,                            # load all the data from the left menu
                    'tasks': tasks,
-                   'images': images}
+                   'images': images,
+                   'dataSource': dataSource}
                   )
 
 

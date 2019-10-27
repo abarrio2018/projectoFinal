@@ -77,11 +77,11 @@
                         {% endif %}
 
                     <li class="list-group-item">Data Source</li>
-                        {% if categories %}
-                            {% for category in categories %}
+                        {% if dataSource %}
+                            {% for data in dataSource %}
                                 <label>
-                                   <input class="check_cat" type="checkbox" name="{{category.category}}" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{category.category}}">
-                                   {{category.category}}
+                                   <input class="check_cat" type="checkbox" name="{{data.data}}" aria-label="Checkbox for following text input" aria-valuetext="Source" checked id="{{data.data}}">
+                                   {{data.data}}
                                 </label>
                             {% endfor%}
                         {% else %}
